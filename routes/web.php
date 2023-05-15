@@ -36,5 +36,5 @@ Route::post('/save_contact', [InterfacesFrontController::class, 'store_contact']
 
 
 //SECTION ADMINISTRATION
-Route::get('/admin', [AdminController::class, 'index'])->name("partials-admin.index");
+Route::get('/administration', [AdminController::class, 'index'])->name("admin.dashboard");
 

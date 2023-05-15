@@ -1,0 +1,607 @@
+@extends('layouts.master')
+@section('content')
+
+
+<style>
+    .tab h2 span {
+        color: #3601c6;
+    }
+
+    .tab h2 {
+        margin: 15px 0 0 0;
+        font-size: 15px;
+        color: #5f5950;
+    }
+
+    .tab h2 {
+        text-align: left;
+        padding-bottom: 7px;
+    }
+
+    tab {
+        padding: 60px 0;
+    }
+
+    .tab code {
+        text-align: center;
+        padding-bottom: 30px;
+        font-weight: bold;
+        margin: 15px auto 0px;
+        color: red;
+        font-size: 13px;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    /* body {
+        background-color: #f1f1f1;
+    } */
+
+    #regForm {
+        background-color: #ffffff;
+        margin: 100px auto;
+        padding: 30px;
+        margin-top: -5rem;
+        width: 100%;
+        min-width: 100px;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    input {
+        padding: 10px;
+        width: 100%;
+        font-size: 17px;
+        border: 1px solid #aaaaaa;
+    }
+
+    /* Mark input boxes that gets an error on validation: */
+    input.invalid {
+        background-color: #ffdddd;
+    }
+
+    /* Hide all steps by default: */
+    .tab {
+        --bs-gutter-x: 1.5rem;
+        --bs-gutter-y: 0;
+        display: none;
+        flex-wrap: wrap;
+        margin-top: calc(-1 * var(--bs-gutter-y));
+        margin-right: calc(-0.5 * var(--bs-gutter-x));
+        margin-left: calc(-0.5 * var(--bs-gutter-x));
+    }
+
+    button {
+        background-color: #1b9c1e;
+        color: #ffffff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 17px;
+        font-family: Raleway;
+        cursor: pointer;
+    }
+
+    button:hover {
+        opacity: 0.8;
+    }
+
+    #prevBtn {
+        background-color: #1b9c1e;
+    }
+
+    /* Make circles that indicate the steps of the form: */
+    .step {
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #1b9c1e;
+        border: none;
+        border-radius: 50%;
+        display: inline-block;
+        opacity: 0.5;
+    }
+
+    .step.active {
+        opacity: 1;
+    }
+
+    /* Mark the steps that are finished and valid: */
+    .step.finish {
+        background-color: #1b9c1e;
+    }
+</style>
+
+<section class="part-prestataire mb-4">
+    <div class="titre-temoignage mb-2" style="background: #3800bf">
+        <div class="p-4 shadow-4 w">
+            <p class="text-center pt-5" style="color: #fff; font-size: 20px">
+                Devenir un prestataire
+            </p>
+        </div>
+    </div><br><br>
+
+    <div class="container">
+
+        <div class="form-group ">
+            <!--AFFICHER LE MESSAGE DE SUCCESS-->
+            @if($message = Session::get('success'))
+                <div class="alert alert-success">
+                    <p class="text-center">{{ $message }}</p>
+                </div>
+            @endif
+  
+            <!--AFFICHER LE MESSAGE D'ERROR-->
+            @if($errors->any())
+                <div class="alert alert-danger">
+                    <p>Humm!</p> Il y a eu des problèmes avec votre entrée.<br><br>
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        </div>
+
+        <form action="{{ route('save.devenirprestataire')}}" method="POST" role="form" 
+            class="php-email-form" enctype="multipart/form-data" id="regForm">
+            @csrf
+
+            <div class="tab">
+                <h2 class="text-center">INFORMATIONS <span>PERSONNELLES</span></h2>
+                <h5 class="text-center">
+                    <code> NB: Les champs marqués par une étoile sont obligatoires .</code><br /><br />
+                </h5>
+
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 form-group  mt-md-0" style="color: #1b9c1e">
+                        <label for="">Nom : </label> <code><span style="color:red">*</code>
+                        <p><input type="text" id="form1Example2" 
+                            class="form-control form-control-lg @error('nom') is-invalid @enderror" name="nom"
+                        placeholder="Saisissez votre nom !" required/>
+                            @error('nom')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </p>
+                    </div>
+                
+                    <div class="col-lg-4 col-md-6 form-group mt-md-0" style="color: #1b9c1e">
+                        <label for="">Prénom(s) : </label> <code><span style="color:red">*</code>
+                        <p><input type="text" id="form1Example2" 
+                            class="form-control form-control-lg @error('nom') is-invalid @enderror" name="prenoms"
+                                placeholder="Saisissez votre nom !" required />
+                            @if ($errors->has('prenoms'))
+                                <div class="error">
+                                    {{ $errors->first('prenoms') }}
+                                </div>
+                             @endif
+                        </p>
+                    </div>
+                   
+                    <div class="col-lg-4 col-md-6 form-group mt-md-0" style="color: #1b9c1e">
+                        <label for="">Civilité: </label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+                            name="civilite">
+                            <option selected>Choisir votre civilité</option>
+                            <option value="célibataire">Mademoiselle</option>
+                            <option value="Marié">Monsieur</option>
+                            <option value="Divorcé">Madame</option>
+                        </select>
+                        @error('civilite')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 form-group mt-md-0" style="color: #1b9c1e">
+                        <label for="">Date de naissance: </label> <code><span style="color:red">*</code>
+                        <input type="date" class="form-control form-control-lg" name="date_naissance" id="date_appel"
+                            placeholder="Précisez la date" required>
+                    </div>
+                    @error('date_naissance')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+
+                    <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" style="color: #1b9c1e">
+                        <label for="">Situation matrimoniale: </label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+                            name="situation_matrimoniale">
+                            <option>Situation matrimoniale</option>
+                            <option>célibataire</option>
+                            <option>marié(e)</option>
+                            <option>veuve</option>
+                            <option>divorcée</option>
+                        </select>
+                        @error('situation_matrimoniale')
+                        <span class="text-danger">{{ $message }}</span>
+                       @enderror
+                    </div>
+                
+                    <div class="col-lg-4 col-md-6 form-group mt-md-0" style="color: #1b9c1e">
+                        <label for="">Nombre d'enfant : </label>
+                        <p>
+                            <input type="text" class="form-control form-control-lg @error('nombre_enfant') is-invalid @enderror" 
+                            name="nombre_enfant" id="nombre_enfant"
+                            placeholder="Saisissez le nombre d'enfant">
+                            @error('nombre_enfant')
+                                <span class="text-danger">{{ $message }}</span>
+                          @enderror
+                        </p>
+                    </div>
+                    
+
+                    <div class="col-lg-4 col-md-6 form-group  mt-md-0" style="color: #1b9c1e">
+                        <label for="">Téléphone 1 : </label> <code><span style="color:red">*</code>
+                        <p>
+                            <input type="number" class="form-control form-control-lg @error('telephone1') is-invalid @enderror" 
+                            name="telephone1" id="telephone1" placeholder="Ex:0143592128">
+                            @error('telephone1')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </p>
+                    </div>
+                   
+
+                    <div class="col-lg-4 col-md-6 form-group  mt-md-0" style="color: #1b9c1e">
+                        <label for="">Téléphone 2 : </label>
+                        <p>
+                            <input type="number" class="form-control form-control-lg" name="telephone2" id="telephone2"
+                                placeholder="Ex:0143592128">  
+                        </p>
+                    </div>
+
+
+                    <div class="col-lg-4 col-md-6 form-group mt-md-0" style="color: #1b9c1e">
+                        <label for="">Whatsapp : </label>
+                        <p><input type="number" class="form-control form-control-lg" name="whatsapp" id="whatsapp"
+                                placeholder="Ex:0143592128">
+                        </p>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 form-group mt-md-0" style="color: #1b9c1e">
+                        <label for="">Adresse mail: </label><code><span style="color:red">*</code>
+                        <p><input type="email" 
+                            class="form-control form-control-lg  @error('email') is-invalid @enderror" name="email" id="email"
+                                placeholder="Ex: alloservice@gmail.com" required>
+                            @error('email')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </p>
+                    </div>
+                   
+
+                    <div class="col-lg-4 col-md-6 form-group mt-md-0" style="color: #1b9c1e">
+                        <label for="">Ethnie : </label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+                            name="ethnie">
+                            <option selected>Choisir votre ethnie</option>
+                            <option>Boualé</option>
+                            <option>Bété</option>
+                            <option>Agni</option>
+                            <option>Abron</option>
+                        </select>
+                        @error('ethnie')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                   
+
+                    <div class="col-lg-4 col-md-6 form-group mt-md-0" style="color: #1b9c1e">
+                        <label for="">Commune: </label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+                            name="commune">
+                            <option selected>Choisir votre commune</option>
+                            <option>Cocody</option>
+                            <option>Yopougon</option>
+                            <option>Koumassi</option>
+                            <option>Marcory</option>
+                        </select>
+                    </div>
+                    @error('commune')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+
+
+                    <div class="col-lg-4 col-md-6 form-group mt-md-0" style="color: #1b9c1e">
+                        <label class="form-label" for="">Quartier: </label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+                            name="quartier">
+                            <option selected>Choisir votre Quartier</option>
+                            <option>M'badon</option>
+                            <option>Anono</option>
+                            <option>Abatta</option>
+                            <option>Faya</option>
+                        </select>
+                    </div>
+                    @error('quartier')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+
+                    <div class="col-lg-4 col-md-6 form-group mt-md-0" style="color: #1b9c1e">
+                        <label class="form-label" for="">Charger une photo: </label> <code><span
+                                style="color:red">*</code>
+                        <p>
+                            <input class="form-control form-control-lg 
+                            @error('photo') is-invalid @enderror" type="file" name="photo" placeholder=".form-control-lg">
+                            @error('photo')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </p>
+                    </div>
+                   
+                </div>
+            </div>
+
+            <div class="tab">
+                <h2 class="text-center">INFORMATIONS <span>PROFESSIONNELLES</span></h2>
+                <h5 class="text-center">
+                    <code>
+                        NB: Les champs marqués par une étoile sont obligatoires .
+                    </code> <br /><br />
+                </h5>
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 form-group mt-md-0" style="color: #1b9c1e">
+                        <label for="">Activité : </label>
+                        <select class="form-select form-select-lg mb-3" name="activite">
+                            <option selected>Activité</option>
+                            <option>Ménage</option>
+                            <option>Mécanique</option>
+                            <option>Electricité</option>
+                        </select>
+                        @error('activite')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                   
+
+                    <div class="col-lg-4 col-md-6 form-group mt-md-0" style="color: #1b9c1e">
+                        <label for="">Année d'expérience : </label>
+                        <select class="form-select form-select-lg mb-3 @error('anne_experience') is-invalid @enderror" aria-label=".form-select-lg example" name="annee_experience">
+                            <option selected>Année d'expérience</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                        </select>
+                        @error('annee_experience')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                 
+
+                    <div class="col-lg-4 col-md-6 form-group mt-md-0" style="color: #1b9c1e">
+                        <label for="">Prétention salariale: </label> <code><span style="color:red">*</code>
+                        <p><input type="text" 
+                            class="form-control form-control-lg @error('pretention_salariale') is-invalid @enderror" name="pretention_salairiale" id="pretention_salairiale"
+                                placeholder="Précisez votre salaire">
+                            @error('pretention_salariale')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </p>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 form-group mt-md-0" style="color: #1b9c1e">
+                        <label for="">Zone d'intervention: </label>
+                        <select class="form-select form-select-lg mb-3  @error('zone_intervention') is-invalid @enderror" aria-label=".form-select-lg example"
+                            name="zone_intervention" name="zone_intervention">
+                            <option selected>Zone d'intervention</option>
+                            <option>Informatique</option>
+                            <option>Big Data</option>
+                            <option>Analyse données</option>
+                        </select>
+                        @error('zone_intervention')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                   
+
+                    <div class="col-lg-4 col-md-6 form-group mt-md-0" style="color: #1b9c1e">
+                        <label for="">Personne à contacter : </label> <code><span style="color:red">*</code>
+                        <p><input type="text" 
+                            class="form-control form-control-lg @error('zone_intervention') is-invalid @enderror" name="personne_contact"
+                                placeholder="Veuillez saisir son nom" required>
+                            @error('personne_contact')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </p>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 form-group mt-md-0" style="color: #1b9c1e">
+                        <label for="">Référence: </label><code><span style="color:red">*</code>
+                        <p><input type="text" 
+                            class="form-control form-control-lg @error('reference') is-invalid @enderror" name="reference" id="reference"
+                                placeholder="Saisir la référence">
+                            @error('reference')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </p>
+                    </div>
+        
+                    <div class="col-lg-4 col-md-6 form-group mt-md-0" style="color: #1b9c1e">
+                        <label for="">Référence contact: </label> <code><span style="color:red">*</code>
+                        <p><input type="number" class="form-control form-control-lg" name="reference_contact" id="reference_contact"
+                                placeholder="Contact"></p>
+                    </div>
+                    @error('reference_contact')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+
+                    <div class="col-lg-4 col-md-6 form-group mt-md-0" style="color: #1b9c1e">
+                        <label for="">Alphabétisation: </label>
+                        <select class="form-select form-select-lg" aria-label=".form-select-lg example"
+                            name="alphabetisation">
+                            <option>je sais lire</option>
+                            <option>je ne sais pas lire</option>
+                        </select>
+                        @error('alphabetisation')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    
+
+                    <div class="col-lg-4 col-md-6 form-group mt-md-0" style="color: #1b9c1e">
+                        <label for="">Dernier diplôme : </label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+                            name="dernier_diplome">
+                            <option>Licence</option>
+                            <option>Master</option>
+                        </select>
+                        @error('dernier_diplome')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab">
+                <h2 class="text-center">AUTRES <span>INFORMATIONS</span></h2>
+                <h5 class="text-center">
+                    <code>
+                        NB: Les champs marqués par une étoile sont obligatoires .
+                    </code> <br /><br />
+                </h5>
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 form-group mt-md-0" style="color: #1b9c1e">
+                        <label for="">Mode de travail: </label>
+                        <select 
+                        class="@error('mode_travail') is-invalid @enderror form-select form-select-lg mb-3" 
+                            name="mode_travail">
+                            <option selected>Mode de travail</option>
+                            <option>En présentiel</option>
+                            <option>Partiel</option>
+                        </select>
+                        @error('mode_travail')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 form-group mt-md-0" style="color: #1b9c1e">
+                        <label for="">Disponibilité : </label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+                            name="disponibilite">
+                            <option>Votre Disponibilité</option>
+                            <option>Permanent</option>
+                            <option>Nom permanent</option>
+                            <option value="temporaire">Temporaire</option>
+                        </select>
+                        @error('disponibilite')
+                            <span class="text-danger">{{ $message }}</span>
+                         @enderror
+                    </div>
+                    
+
+                    <div class="col-lg-4 col-md-6 form-group mt-md-0" style="color: #1b9c1e">
+                        <label for="">Nature de la pièce : </label>
+                        <select class="form-select form-select-lg mb-3 
+                            @error('nature_piece') is-invalid @enderror" aria-label=".form-select-lg example"
+                            name="nature_piece">
+                            <option selected>Nature de la pièce</option>
+                            <option>CNI</option>
+                            <option>Attestation</option>
+                            <option>Passeport</option>
+                            <option>Carte consulaire</option>
+                            <option>Photo d'identité</option>
+                        </select>
+                        @error('nature_piece')
+                        <span class="text-danger">{{ $message }}</span>
+                      @enderror
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 form-group mt-md-0" style="color: #1b9c1e">
+                        <label for="">Numéro de la pièce : </label> <code><span style="color:red">*</code>
+                        <p><input class="form-control form-control-lg" type="text" name="numero_piece"
+                                placeholder="Numéro de la pièce"></p>
+                    </div>
+                    @error('numero_piece')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+
+                    <div class="col-lg-4 col-md-6 form-group mt-md-0" style="color: #1b9c1e">
+                        <label for="">Rencontre avec Allô Service ? : </label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+                            name="rencontre_allo_service">
+                            <option selected>--Sélectionner un champ</option>
+                            <option>Via réseaux sociaux</option>
+                            <option>Via un ami</option>
+                        </select>
+                    </div>
+                    @error('rencontre_allo_service')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+
+                    <div class="col-lg-4 col-md-6 form-group mt-md-0" style="color: #1b9c1e">
+                        <label for="">Date de l'appel : </label> <code><span style="color:red">*</code>
+                        <input type="date" class="form-control form-control-lg" name="date_appel" id="date_appel"
+                            placeholder="Précisez la date">
+                        @error('date_appel')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+
+                    <div class="col-lg-4 col-md-6 form-group mt-md-0" style="color: #1b9c1e">
+                        <label for="">Copie de la pièce: </label> <code><span style="color:red">*</code>
+                        <p><input type="file" class="form-control form-control-lg" name="copie_piece" placeholder="">
+                            @error('copie_piece')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </p>
+                    </div>
+                   
+
+                    <div class="col-lg-4 col-md-6 form-group mt-md-0" style="color: #1b9c1e">
+                        <label class="form-label" for="">Copie du dernier diplôme: </label> <code><span
+                                style="color:red">*</code>
+                        <p><input class="form-control form-control-lg" id="formFileLg" name="copie_dernier_diplome" type="file"></p>
+                    </div>
+
+                    @error('copie_dernier_diplome')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+
+                    <div class="col-lg-4 col-md-6 form-group mt-md-0" style="color: #1b9c1e">
+                        <label for="">Catalogue de realisation : </label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+                            name="catalogue_realisation">
+                            <option selected>Choisir</option>
+                            <option>Oui</option>
+                            <option>Nom</option>
+                        </select>
+                        @error('catalogue_realisation')
+                            <span class="text-danger">{{ $message }}</span>
+                         @enderror
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="form4Example3">Observation</label>
+                        <textarea class="form-control form-control-lg" id="form4Example3" rows="4"
+                            name="observation"></textarea>
+                    </div>
+                    @error('observation')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+            <div style="overflow:auto;">
+                <div style="float:right;">
+                    <button type="button" id="prevBtn" onclick="nextPrev(-1)">Retour</button>
+                    <button type="button" id="nextBtn" onclick="nextPrev(1)">Suivant</button>
+                </div>
+            </div>
+            <!-- Circles which indicates the steps of the form: -->
+            <div style="text-align:center;margin-top:40px;">
+                <span class="step"></span>
+                <span class="step"></span>
+                <span class="step"></span>
+            </div>
+        </form>
+
+    </div>
+
+
+</section>
+@endsection
+@yield('js')

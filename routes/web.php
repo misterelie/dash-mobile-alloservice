@@ -38,3 +38,14 @@ Route::post('/save_contact', [InterfacesFrontController::class, 'store_contact']
 //SECTION ADMINISTRATION
 Route::get('/administration', [AdminController::class, 'index'])->name("admin.dashboard");
 
+//NOS PRESTATIONS
+Route::get('/liste/prestation', [AdminController::class, 'liste_prestation'])->name("liste-prestation");
+Route::post('/save.prestation', [AdminController::class, 'save_prestation'])->name("save.prestation");
+Route::put('/prestation.upate/{prestation}', [AdminController::class, 'update'])->name("prestation.upate");
+Route::delete('/delete.prestation/{prestation}', [AdminController::class, 'delete'])->name("delete.prestation");
+
+
+
+
+
+

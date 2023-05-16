@@ -662,12 +662,12 @@
                     aria-expanded="false" aria-controls="sidebarPages">
                     <i class="mdi mdi-sticker-text-outline"></i> <span data-key="t-pages">Prestations</span>
                 </a>
-                {{-- <div class="collapse menu-dropdown" id="sidebarPages">
+                <div class="collapse menu-dropdown" id="sidebarPages">
                     <ul class="nav nav-sm flex-column">
                         <li class="nav-item">
-                            <a href="pages-starter.html" class="nav-link" data-key="t-starter"> Starter </a>
+                            <a href="{{ url('liste/prestation') }}" class="nav-link" data-key="t-starter">Ajouter une prestation</a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="#sidebarProfile" class="nav-link" data-bs-toggle="collapse"
                                 role="button" aria-expanded="false" aria-controls="sidebarProfile"
                                 data-key="t-profile"> Profile
@@ -684,18 +684,18 @@
                                     </li>
                                 </ul>
                             </div>
-                        </li>
-                        <li class="nav-item">
+                        </li> --}}
+                        {{-- <li class="nav-item">
                             <a href="pages-team.html" class="nav-link" data-key="t-team"> Team </a>
-                        </li>
-                        <li class="nav-item">
+                        </li> --}}
+                        {{-- <li class="nav-item">
                             <a href="pages-timeline.html" class="nav-link" data-key="t-timeline"> Timeline
                             </a>
-                        </li>
-                        <li class="nav-item">
+                        </li> --}}
+                        {{-- <li class="nav-item">
                             <a href="pages-faqs.html" class="nav-link" data-key="t-faqs"> FAQs </a>
-                        </li>
-                        <li class="nav-item">
+                        </li> --}}
+                        {{-- <li class="nav-item">
                             <a href="pages-pricing.html" class="nav-link" data-key="t-pricing"> Pricing </a>
                         </li>
                         <li class="nav-item">
@@ -725,9 +725,9 @@
                             <a href="pages-term-conditions.html" class="nav-link"><span
                                     data-key="t-term-conditions">Term & Conditions</span> <span
                                     class="badge badge-pill bg-success" data-key="t-new">New</span></a>
-                        </li>
+                        </li> --}}
                     </ul>
-                </div> --}}
+                </div>
             </li>
 
             <li class="nav-item">

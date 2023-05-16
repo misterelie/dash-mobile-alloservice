@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Prestation extends Model
 {
     use HasFactory;
+    protected $table = "prestations";
+    protected $guarded = ['id'];
+    protected $fillable = ["libelle", "image_prestation", "titre_banner"];
 }

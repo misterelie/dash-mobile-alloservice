@@ -67,7 +67,7 @@
             <div class="form-outline mb-4" style="color: #1b9c1e">
                 <label class="form-label" for="form1Example2">Salaire proposé<span style="color: red">(*)</span> :</label>
                 <input type="text" name="salaire_propose" id="form1Example2" 
-                class="form-control form-control-lg @error('salaire_propose') is-invalid @else is-valid @enderror" placeholder="Proposer un salaire svp !" required/>
+                class="form-control form-control-lg @error('salaire_propose') is-invalid @else is-valid @enderror" placeholder="Proposer un salaire en FCFA" required/>
                 @error('salaire_propose')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror

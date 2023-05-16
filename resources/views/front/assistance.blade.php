@@ -17,7 +17,7 @@
   <div class="container  m-auto mx-auto">
       <div class="text-center">
           <img class="d-block mx-auto img-fluid mb-4"
-              src="{{ asset('assets/images/eli1.png') }}" alt="" width="100"
+              src="{{ asset('assets/images/image-assist.jpg') }}" alt="" width="100"
               id="img-content">
           <h6 class="tittle-assist" style="color: black; font-weight:500">Appelez-nous sur l'un  des numéros suivants:</h6>
           <div class="row">
@@ -40,10 +40,6 @@
 
           <div class="col-lg-12">
             <h4 style="font-size: 17px">Ou encore, retrouvez-nous ici:</h4>
-          </div>
-
-          <div id="map" style="height: 400px;">
-
           </div>
         </div>
       </div>

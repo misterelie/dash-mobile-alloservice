@@ -838,10 +838,7 @@
                                     <a href="{{ route('ajout.commune') }}" class="nav-link"
                                         data-key="t-carousel">Communes</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="ui-carousel.html" class="nav-link"
-                                        data-key="t-carousel">Quartiers</a>
-                                </li>
+                                
                                 <li class="nav-item">
                                     <a href="{{ route('nature.piece') }}" class="nav-link"
                                         data-key="t-carousel">Nature pièces</a>
@@ -849,6 +846,10 @@
 
                                 <li class="nav-item">
                                     <a href="{{ url('ajout/quartier') }}" class="nav-link" data-key="t-cards">Quartiers</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="{{ route('ajout.about') }}" class="nav-link" data-key="t-cards">Présentation</a>
                                 </li>
                                 {{-- <li class="nav-item">
                                     <a href="ui-colors.html" class="nav-link" data-key="t-colors">Colors</a>

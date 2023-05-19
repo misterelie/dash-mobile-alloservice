@@ -5,10 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class About extends Model
+class Banner extends Model
 {
     use HasFactory;
-    protected $table = "abouts";
-    protected $guarded = ['id'];
-    protected $fillable = ["titre","description"];
 }

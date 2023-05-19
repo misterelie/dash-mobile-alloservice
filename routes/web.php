@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Backend\AdminController as AdminController;
 use App\Http\Controllers\Interfaces\FrontController  as InterfacesFrontController ;
 
@@ -103,3 +104,10 @@ Route::get('/ajout/quartier', [AdminController::class, 'add_quartier'])->name("a
 Route::post('/store.quartier', [AdminController::class, 'save_quartier'])->name("store.quartier");
 Route::put('/update.quartier/{quartier}', [AdminController::class, 'update_tiek'])->name("update.quartier");
 Route::delete('/destroy.quartier/{id}', [AdminController::class, 'destroy'])->name("destroy.quartier");
+
+//ABOUT
+Route::get('/ajout.about', [AboutController::class, 'presentation'])->name("ajout.about");
+Route::post('/save.about', [AboutController::class, 'store'])->name("save.about");
+Route::put('/about.update/{about}', [AboutController::class, 'update'])->name("about.update");
+Route::delete('/delete.about/{about}', [AboutController::class, 'destroy_about'])->name("delete.about");
+

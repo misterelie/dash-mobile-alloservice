@@ -466,12 +466,85 @@
             <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-pages">Pages</span></li>
 
             <li class="nav-item">
+                <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button"
+                    aria-expanded="false" aria-controls="sidebarPages">
+                    <i class="mdi mdi-sticker-text-outline"></i> <span data-key="t-pages">Prestations demandées</span>
+                </a>
+                <div class="collapse menu-dropdown" id="sidebarPages">
+                    <ul class="nav nav-sm flex-column">
+                        <li class="nav-item">
+                            <a href="{{ url('liste/demande_prestation')}}" class="nav-link" data-key="t-starter">gestion des demandes</a>
+                        </li>
+                        {{-- <li class="nav-item">
+                            <a href="#sidebarProfile" class="nav-link" data-bs-toggle="collapse"
+                                role="button" aria-expanded="false" aria-controls="sidebarProfile"
+                                data-key="t-profile"> Profile
+                            </a>
+                            <div class="collapse menu-dropdown" id="sidebarProfile">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a href="pages-profile.html" class="nav-link"
+                                            data-key="t-simple-page"> Simple Page </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="pages-profile-settings.html" class="nav-link"
+                                            data-key="t-settings"> Settings </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li> --}}
+                        {{-- <li class="nav-item">
+                            <a href="pages-team.html" class="nav-link" data-key="t-team"> Team </a>
+                        </li> --}}
+                        {{-- <li class="nav-item">
+                            <a href="pages-timeline.html" class="nav-link" data-key="t-timeline"> Timeline
+                            </a>
+                        </li> --}}
+                        {{-- <li class="nav-item">
+                            <a href="pages-faqs.html" class="nav-link" data-key="t-faqs"> FAQs </a>
+                        </li> --}}
+                        {{-- <li class="nav-item">
+                            <a href="pages-pricing.html" class="nav-link" data-key="t-pricing"> Pricing </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pages-gallery.html" class="nav-link" data-key="t-gallery"> Gallery </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pages-maintenance.html" class="nav-link" data-key="t-maintenance">
+                                Maintenance </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pages-coming-soon.html" class="nav-link" data-key="t-coming-soon">
+                                Coming Soon </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pages-sitemap.html" class="nav-link" data-key="t-sitemap"> Sitemap </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pages-search-results.html" class="nav-link"
+                                data-key="t-search-results"> Search Results </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pages-privacy-policy.html" class="nav-link"><span
+                                    data-key="t-privacy-policy">Privacy Policy</span> <span
+                                    class="badge badge-pill bg-success" data-key="t-new">New</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pages-term-conditions.html" class="nav-link"><span
+                                    data-key="t-term-conditions">Term & Conditions</span> <span
+                                    class="badge badge-pill bg-success" data-key="t-new">New</span></a>
+                        </li> --}}
+                    </ul>
+                </div>
+            </li>
+
+            {{-- <li class="nav-item">
                 <a class="nav-link menu-link" href="#sidebarAuth" data-bs-toggle="collapse" role="button"
                     aria-expanded="false" aria-controls="sidebarAuth">
                     <i class="mdi mdi-account-circle-outline"></i> <span
-                        data-key="t-authentication">Authentication</span>
+                        data-key="t-authentication">Prestations demandées</span>
                 </a>
-                {{-- <div class="collapse menu-dropdown" id="sidebarAuth">
+                <div class="collapse menu-dropdown" id="sidebarAuth">
                     <ul class="nav nav-sm flex-column">
                         <li class="nav-item">
                             <a href="#sidebarSignIn" class="nav-link" data-bs-toggle="collapse"
@@ -654,78 +727,19 @@
                             </div>
                         </li>
                     </ul>
-                </div> --}}
-            </li>
+                </div> 
+            </li> --}}
 
             <li class="nav-item">
                 <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button"
                     aria-expanded="false" aria-controls="sidebarPages">
-                    <i class="mdi mdi-sticker-text-outline"></i> <span data-key="t-pages">Prestations</span>
+                    <i class="mdi mdi-sticker-text-outline"></i> <span data-key="t-pages">Nos prestations</span>
                 </a>
                 <div class="collapse menu-dropdown" id="sidebarPages">
                     <ul class="nav nav-sm flex-column">
                         <li class="nav-item">
                             <a href="{{ url('liste/prestation') }}" class="nav-link" data-key="t-starter">Ajouter une prestation</a>
                         </li>
-                        {{-- <li class="nav-item">
-                            <a href="#sidebarProfile" class="nav-link" data-bs-toggle="collapse"
-                                role="button" aria-expanded="false" aria-controls="sidebarProfile"
-                                data-key="t-profile"> Profile
-                            </a>
-                            <div class="collapse menu-dropdown" id="sidebarProfile">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a href="pages-profile.html" class="nav-link"
-                                            data-key="t-simple-page"> Simple Page </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="pages-profile-settings.html" class="nav-link"
-                                            data-key="t-settings"> Settings </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li> --}}
-                        {{-- <li class="nav-item">
-                            <a href="pages-team.html" class="nav-link" data-key="t-team"> Team </a>
-                        </li> --}}
-                        {{-- <li class="nav-item">
-                            <a href="pages-timeline.html" class="nav-link" data-key="t-timeline"> Timeline
-                            </a>
-                        </li> --}}
-                        {{-- <li class="nav-item">
-                            <a href="pages-faqs.html" class="nav-link" data-key="t-faqs"> FAQs </a>
-                        </li> --}}
-                        {{-- <li class="nav-item">
-                            <a href="pages-pricing.html" class="nav-link" data-key="t-pricing"> Pricing </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages-gallery.html" class="nav-link" data-key="t-gallery"> Gallery </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages-maintenance.html" class="nav-link" data-key="t-maintenance">
-                                Maintenance </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages-coming-soon.html" class="nav-link" data-key="t-coming-soon">
-                                Coming Soon </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages-sitemap.html" class="nav-link" data-key="t-sitemap"> Sitemap </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages-search-results.html" class="nav-link"
-                                data-key="t-search-results"> Search Results </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages-privacy-policy.html" class="nav-link"><span
-                                    data-key="t-privacy-policy">Privacy Policy</span> <span
-                                    class="badge badge-pill bg-success" data-key="t-new">New</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages-term-conditions.html" class="nav-link"><span
-                                    data-key="t-term-conditions">Term & Conditions</span> <span
-                                    class="badge badge-pill bg-success" data-key="t-new">New</span></a>
-                        </li> --}}
                     </ul>
                 </div>
             </li>
@@ -733,23 +747,15 @@
             <li class="nav-item">
                 <a class="nav-link menu-link" href="#sidebarLanding" data-bs-toggle="collapse" role="button"
                     aria-expanded="false" aria-controls="sidebarLanding">
-                    <i class="mdi mdi-account-circle-outline"></i> <span data-key="t-landing">Témoignages</span>
+                    <i class="mdi mdi-account-circle-outline"></i> <span data-key="t-landing">Prestataires</span>
                 </a>
-                {{-- <div class="collapse menu-dropdown" id="sidebarLanding">
+                <div class="collapse menu-dropdown" id="sidebarLanding">
                     <ul class="nav nav-sm flex-column">
                         <li class="nav-item">
-                            <a href="landing.html" class="nav-link" data-key="t-one-page"> One Page </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="nft-landing.html" class="nav-link" data-key="t-nft-landing"> NFT
-                                Landing </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="job-landing.html" class="nav-link"><span data-key="t-job">Job</span>
-                                <span class="badge badge-pill bg-success" data-key="t-new">New</span></a>
+                            <a href="{{ url('liste/devenirprestataire')}}" class="nav-link" data-key="t-one-page">gestion des prestataires</a>
                         </li>
                     </ul>
-                </div> --}}
+                </div> 
             </li>
 
             <li class="nav-item">
@@ -804,21 +810,47 @@
                     aria-expanded="false" aria-controls="sidebarUI">
                     <i class="mdi mdi-spin mdi-cog-outline fs-22"></i> <span data-key="t-base-ui">Paramètres</span>
                 </a>
-                {{-- <div class="collapse menu-dropdown mega-dropdown-menu" id="sidebarUI">
+                <div class="collapse menu-dropdown mega-dropdown-menu" id="sidebarUI">
                     <div class="row">
                         <div class="col-lg-4">
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
-                                    <a href="ui-alerts.html" class="nav-link" data-key="t-alerts">Alerts</a>
+                                    <a href="{{ route('liste.ethnie')}}" class="nav-link" data-key="t-alerts">Ethnies</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="ui-badges.html" class="nav-link" data-key="t-badges">Badges</a>
+                                    <a href="{{ route('liste.modes')}}" class="nav-link" data-key="t-badges">Modes de travail</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="ui-buttons.html" class="nav-link"
-                                        data-key="t-buttons">Buttons</a>
+                                    <a href="{{ url('ajout/diplome')}}" class="nav-link"
+                                        data-key="t-buttons">Diplômes</a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="{{ url('ajout/alphabetisation') }}" class="nav-link" data-key="t-buttons">Alplabétisations</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('ajout.rencontre') }}" class="nav-link" data-key="t-buttons">Canals</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="{{ route('ajout.disponibilite') }}" class="nav-link" data-key="t-buttons">Dispobilités</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('ajout.commune') }}" class="nav-link"
+                                        data-key="t-carousel">Communes</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="ui-carousel.html" class="nav-link"
+                                        data-key="t-carousel">Quartiers</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('nature.piece') }}" class="nav-link"
+                                        data-key="t-carousel">Nature pièces</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="{{ url('ajout/quartier') }}" class="nav-link" data-key="t-cards">Quartiers</a>
+                                </li>
+                                {{-- <li class="nav-item">
                                     <a href="ui-colors.html" class="nav-link" data-key="t-colors">Colors</a>
                                 </li>
                                 <li class="nav-item">
@@ -834,10 +866,10 @@
                                 </li>
                                 <li class="nav-item">
                                     <a href="ui-grid.html" class="nav-link" data-key="t-grid">Grid</a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
-                        <div class="col-lg-4">
+                        {{-- <div class="col-lg-4">
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
                                     <a href="ui-images.html" class="nav-link" data-key="t-images">Images</a>
@@ -900,9 +932,9 @@
                                         data-key="t-utilities">Utilities</a>
                                 </li>
                             </ul>
-                        </div>
+                        </div> --}}
                     </div>
-                </div> --}}
+                </div>
             </li>
 
             {{-- <li class="nav-item">

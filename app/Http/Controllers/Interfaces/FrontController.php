@@ -3,14 +3,17 @@
 namespace App\Http\Controllers\Interfaces;
 
 use Exception;
+use App\Models\Contact;
+use App\Models\Prestation;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\New_;
 use App\Models\DemandePrestation;
 use App\Models\DevenirPrestataire;
 use App\Http\Controllers\Controller;
-use App\Models\Contact;
+use App\Models\Ethnie;
+use App\Models\Mode;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Validator;
-use PhpParser\Node\Expr\New_;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 
@@ -22,7 +25,10 @@ class FrontController extends Controller
 
     /* DEMANDE DE PRESTATION */
     public function demande_prestation(){
-        return view('front.prestation');
+        $prestations = Prestation::orderBy('id','asc')->get();
+        $ethnies = Ethnie::all();
+        $modes = Mode::all();
+        return view('front.prestation', compact('prestations', 'ethnies', 'modes'));
     }
 
     public function send_contact(){
@@ -33,21 +39,31 @@ class FrontController extends Controller
     {
         //dd($request->all());
         $request->validate([
-            'prestation_demande' => 'required',
-            'mode_travail' => 'required',
+            'nom' => 'required',
+            'prenoms' => 'required',
+            'telephone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|max:10',
+            'email' => 'nullable|email:unique',
+            'prestation_id' => 'required',
+            'mode_id' => 'required',
             'salaire_propose' => 'required|numeric|min:0',
-            'age' => 'required',
-            'ethnie' => 'required',
-            'date' => 'required',
+            'age_demande' => 'required',
+            'ethnie_id' => 'nullable',
+            'date_demande' => 'required',
+            'heure_demande'  => 'required',
             'observation' => 'nullable'
         ]);
         $askprestations = new DemandePrestation();
-        $askprestations->prestation_demande = $request->prestation_demande;
-        $askprestations->mode_travail = $request->prestation_demande;
+        $askprestations->nom = $request->nom;
+        $askprestations->prenoms = $request->prenoms;
+        $askprestations->email = $request->email;
+        $askprestations->telephone = $request->telephone;
+        $askprestations->prestation_id = $request->prestation_id;
+        $askprestations->mode_id = $request->mode_id;
         $askprestations->salaire_propose = intval($request->salaire_propose);
-        $askprestations->age = $request->age;
-        $askprestations->ethnie = $request->ethnie;
-        $askprestations->date = $request->date;
+        $askprestations->age_demande = $request->age_demande;
+        $askprestations->ethnie_id = $request->ethnie_id;
+        $askprestations->date_demande = $request->date_demande;
+        $askprestations->heure_demande = $request->heure_demande;
         $askprestations->observation = $request->observation;
         $askprestations->save();
         return redirect()->back()->with('success', 'Félicitations!  Votre demande a été envoyé avec succès ');

@@ -34,7 +34,7 @@
     
                 @if ($errors->any())
                     <div class="alert alert-danger text-center">
-                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                        <strong>Oups !</strong> Oups ! Il y a eu des problèmes avec votre entrée..<br><br>
                         <ul>
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
@@ -71,10 +71,10 @@
                                     <table class="table align-middle table-nowrap" id="customerTable">
                                         <thead class="table-light">
                                             <tr>
-                                                <th>No</th>
+                                                <th>N°</th>
                                                 <th class="sort" data-sort="customer_name">Images</th>
                                                 <th class="sort" data-sort="email">Noms prestations</th>
-                                                <th class="sort" data-sort="action">Action</th>
+                                                <th class="sort" data-sort="action" style="width: 120px !important">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody class="list form-check-all">
@@ -82,7 +82,7 @@
                                             @foreach($prestations as $prestation)
                                             <tr>
                                                 <th scope="row">
-                                                    {{ $prestation->id }}
+                                                    {{ $loop->iteration }}
                                                 </th>
                                                
                                                 <td class="customer_name">
@@ -160,27 +160,36 @@
                             <h5 class="modal-title" id="exampleModalLabel"></h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
                         </div>
-                        <form action="{{ route('save.prestation')}}" class="" autocomplete="off" method="POST"  enctype="multipart/form-data">
+                        <form action="{{ route('save.prestation')}}" class="" autocomplete="off" method="POST"  
+                           enctype="multipart/form-data">
                             @csrf
 
                             <div class="modal-body">
                                 <div class="mb-3" id="modal-id" style="display: none;">
                                     <label for="id-field" class="form-label">ID</label>
-                                    <input type="text" id="id-field" class="form-control" placeholder="ID" readonly />
+                                    <input type="text" id="id-field" class="form-control" placeholder="ID" readonly/>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="customername-field" class="form-label"> Nom</label>
-                                    <input type="text" id="customername-field" class="form-control" name="libelle" 
-                                        placeholder="Entrez le nom de la prestation" required />
-                                    <div class="invalid-feedback">Veuillez saisir le nom de la prestation.</div>
+                                    <input type="text" id="customername-field" 
+                                        class="form-control @error('libelle') is-invalid @enderror" name="libelle"
+                                        placeholder="Entrez le nom de la prestation"/>
+
+                                    @error('libelle')
+                                        <div class="alert alert-danger">Veuillez saisir le nom de la prestation</div>
+                                    @enderror
+                                    {{-- <div class="invalid-feedback">Veuillez saisir le nom de la prestation.</div> --}}
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="email-field" class="form-label">Ajouter une image</label>
-                                    <input type="file" id="image_prestation" name="image_prestation" class="form-control" 
-                                    placeholder="Ajouter une image pour la prestation" required />
-                                    <div class="invalid-feedback">Ajouter une image pour la prestation.</div>
+                                    <input type="file" id="image_prestation" name="image_prestation" 
+                                    class="form-control  @error('image_prestation') is-invalid @enderror" 
+                                    placeholder="Ajouter une image pour la prestation" />
+                                    @error('image_prestation')
+                                        <div class="alert alert-danger">Ajouter une image pour la prestation.</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -219,7 +228,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="customername-field" class="form-label"> Nom</label>
+                                    <label for="customername-field" class="form-label">Nom</label>
                                     <input type="text" id="customername-field" 
                                     class="form-control" name="libelle" 
                                     value="{{ $prestation->libelle }}"

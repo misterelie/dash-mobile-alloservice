@@ -12,13 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('demande_prestations', function (Blueprint $table) {
-            $table->id();
-            $table->string('prestation_demande');
-            $table->string('mode_travail');
+            $table->bigIncrements('id');
+            $table->string('nom', 50)->nullable();
+            $table->string('prenoms', 191)->nullable();
+            $table->string('telephone');
+            $table->string('mode_id')->nullable();
+            $table->string('email', 50)->nullable();
+            $table->foreignId('prestation_id')->nullable();
             $table->integer('salaire_propose')->nullable()->default(NULL);
-            $table->integer('age');
-            $table->string('ethnie');
-            $table->date('date');
+            $table->string('age_demande')->nullable()->default(NULL);
+            $table->foreignId('ethnie_id')->nullable();
+            $table->date('date_demande')->nullable();
+            $table->time('heure_demande')->nullable();
             $table->text('observation')->nullable();
             $table->timestamps();
            

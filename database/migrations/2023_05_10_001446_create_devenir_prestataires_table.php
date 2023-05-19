@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('devenir_prestataires', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('nom');
             $table->string('prenoms');
             $table->string('civilite')->nullable();
@@ -23,8 +23,8 @@ return new class extends Migration
             $table->string('telephone2', 50)->nullable();
             $table->string('whatsapp', 50)->nullable();
             $table->string('email', 191);
-            $table->string('ethnie', 191)->nullable();
-            $table->string('commune')->nullable();
+            $table->foreignId('ethnie_id', 191)->nullable();
+            $table->foreignId('commune_id')->nullable();
             $table->string('quartier')->nullable();
             $table->string('photo');
             $table->string('activite')->nullable();

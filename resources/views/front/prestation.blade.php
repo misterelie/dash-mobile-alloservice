@@ -1,6 +1,12 @@
 @extends('layouts.master')
 @section('content')
 
+
+<style>
+    .form-control{
+        border-color: #3800bf;
+    }
+</style>
 <section class="mb-4">
         <div class="titre-temoignage mb-4" style="background: #3800bf">
             <div class="p-4 shadow-4 w">
@@ -35,83 +41,152 @@
         <form action="{{ route('save.demandeprestation')}}" method="POST" enctype="multipart/form-data">
           @csrf
 
-            <!-- Name input -->
-            <div class="form-outline mb-4" style="color: #1b9c1e">
-                <label class="form-label" for="form4Example1">Prestation demandée<span style="color: red">(*)</span></label>
-                <select name="prestation_demande" class="form-select form-select-lg mb-3 form-control @error('prestation_demande') is-invalid @enderror">
-                    <option selected>Choisir la prestation</option>
-                    <option>Ménage</option>
-                    <option>Chauffeur</option>
-                    <option>Nounou</option>
-                  </select>
+          <h6 class="text-center" style="color: red; font-size: 12px">
+            NB: Les champs marqués par une étoile <br> sont obligatoires
+         </h6><br>
 
-                @error('prestation_demande')
-                    <div class="alert alert-danger">{{ $message }}</div>
+            <!-- Name input -->
+
+            <div class="form-outline mb-4" style="color: #1b9c1e">
+                <label class="form-label" for="form1Example2"> <span style="color: red">*</span> Nom :</label>
+                <input type="text" id="form1Example2" 
+                    class="form-control form-control-lg @error('nom') is-invalid @enderror" name="nom"
+                placeholder="Saisissez votre nom !"/>
+                    @error('nom')
+                        <div class="alert alert-danger">Veuillez remplir ce champ</div>
+                    @enderror
+            </div>
+
+            <div class="form-outline mb-4" style="color: #1b9c1e">
+                <label class="form-label" for="form1Example2"> <span style="color: red">*</span> Prénoms :</label>
+                <input type="text" id="form1Example2" 
+                    class="form-control form-control-lg @error('prenoms') is-invalid @enderror" name="prenoms"
+                placeholder="Saisissez votre prénom !"/>
+                    @error('prenoms')
+                        <div class="alert alert-danger">Veuillez remplir ce champ</div>
+                    @enderror
+            </div>
+
+            <div class="form-outline mb-4" style="color: #1b9c1e">
+                <label class="form-label" for="form1Example2"> <span style="color: red">*</span> Téléphone :</label>
+                <input type="text" id="form1Example2" 
+                    class="form-control form-control-lg @error('telephone') is-invalid @enderror" name="telephone"
+                placeholder="Saisissez votre numéro de téléphone !"/>
+                    @error('telephone')
+                        <div class="alert alert-danger">Veuillez remplir ce champ</div>
+                    @enderror
+            </div>
+
+            <div class="form-outline mb-4" style="color: #1b9c1e">
+                <label class="form-label" for="form1Example2"> <span style="color: red">*</span> Email :</label>
+                <input type="email" id="form1Example2" 
+                    class="form-control form-control-lg @error('email') is-invalid @enderror" name="email"
+                placeholder="Saisissez votre email !"/>
+                    @error('email')
+                        <div class="alert alert-danger">Veuillez remplir ce champ</div>
+                    @enderror
+            </div>
+
+            <div class="form-outline mb-4" style="color: #1b9c1e">
+                <label class="form-label" for="form4Example1"><span style="color: red">*</span> Choisir la prestation :</label>
+                <select name="prestation_id" class="form-select form-select-lg mb-3 form-control 
+                @error('prestation_id') is-invalid @enderror">
+                <option selected>Veuillez Choisir </option>
+                    @if (!is_null($prestations))
+                        @foreach ($prestations as $prestation)
+                            <option value="{{ $prestation->id }}"
+                                {{ !is_null(old('prestation_id')) ? 'selected' : '' }}>
+                                {{ Str::ucfirst($prestation->libelle) }}
+                            </option>
+                        @endforeach
+                    @endif
+                </select>
+
+                @error('prestation_id')
+                    <div class="alert alert-danger">Ce champ est obigatoire</div>
                 @enderror
             </div>
           
             <div class="form-outline mb-4" style="color: #1b9c1e">
-                <label class="form-label" for="form4Example1">Mode de travail<span style="color: red">(*)</span></label>
-                <select name="mode_travail" 
-                    class="@error('mode_travail') is-invalid @enderror form-select form-select-lg mb-3" aria-label=".form-select-lg example" required>
-                    <option selected>Choisir le mode </option>
-                    <option>Partiel</option>
-                    <option>En plein temps</option>
-                  </select>
-                  
-                @error('mode_travail')
-                <div class="alert alert-danger">{{ $message }}</div>
+                <label class="form-label" for="form4Example1"><span style="color: red">*</span> Mode de travail :</label>
+                <select name="mode_id" class="@error('mode_id') is-invalid @enderror form-select form-select-lg mb-3 form-control">
+                    <option selected>Choisissez votre mode</option>
+                    @if (!is_null($modes))
+                        @foreach ($modes as $mode)
+                            <option value="{{ $mode->id }}"
+                                {{ !is_null(old('mode')) ? 'selected' : '' }}>
+                                {{ Str::ucfirst($mode->mode) }}
+                            </option>
+                        @endforeach
+                    @endif
+                </select>
+                @error('mode_id')
+                <div class="alert alert-danger">Ce champ est obligatoire</div>
             @enderror
             </div>
     
             <div class="form-outline mb-4" style="color: #1b9c1e">
-                <label class="form-label" for="form1Example2">Salaire proposé<span style="color: red">(*)</span> :</label>
-                <input type="text" name="salaire_propose" id="form1Example2" 
-                class="form-control form-control-lg @error('salaire_propose') is-invalid @else is-valid @enderror" placeholder="Proposer un salaire en FCFA" required/>
-                @error('salaire_propose')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-             </div>
-    
-             <div class="form-outline mb-4" style="color: #1b9c1e">
-                <label class="form-label" for="form1Example2">Age<span style="color: red">(*)</span></label>
-                <input type="text" name="age" id="form1Example2" 
-                class="form-control form-control-lg @error('age') is-invalid @else is-valid @enderror" placeholder="Saisissez votre age !" required/>
-                @error('age')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-             </div>
-    
-             <div class="form-outline mb-4" style="color: #1b9c1e">
-                <label class="form-label" for="form4Example1">Ethnie :</label>
-                <select name="ethnie" 
-                class="form-select form-select-lg mb-3 @error('ethnie') is-invalid @else is-valid @enderror">
-                    <option selected>Choisissez votre ethnie </option>
-                    <option>Baoulé</option>
-                    <option>Agni</option>
-                    <option>Abron</option>
-                    <option>Bété</option>
-                  </select>
-                  @error('ethnie')
-                  <div class="alert alert-danger">{{ $message }}</div>
-                 @enderror
+                <label class="form-label" for="form1Example2"> <span style="color: red">*</span> Salaire proposé :</label>
+                <input type="text" id="form1Example2" 
+                    class="form-control form-control-lg @error('salaire_propose') is-invalid @enderror" name="salaire_propose"
+                placeholder="Proposez un salaire en FCFA !"/>
+                    @error('salaire_propose')
+                        <div class="alert alert-danger">Veuillez remplir ce champ</div>
+                    @enderror
             </div>
     
             <div class="form-outline mb-4" style="color: #1b9c1e">
-                <label class="form-label" for="form1Example2">Date d'execution<span style="color: red">(*)</span></label>
-                <input type="date" name="date" id="form1Example2" class="form-control form-control-lg @error('ethnie') is-invalid @else is-valid @enderror" required/>
-                @error('date')
-                <div class="alert alert-danger">{{ $message }}</div>
-               @enderror
-             </div>
+                <label class="form-label" for="form1Example2"> <span style="color: red">*</span> Age :</label>
+                <input type="text" id="form1Example2" 
+                    class="form-control form-control-lg @error('age_demande') is-invalid @enderror" name="age_demande"
+                placeholder="Saisissez votre age !"/>
+                    @error('age_demande')
+                        <div class="alert alert-danger">Veuillez remplir ce champ</div>
+                    @enderror
+            </div>
+
+            <div class="form-outline mb-4" style="color: #1b9c1e">
+                <label class="form-label" for="form4Example1"><span style="color: red">*</span> Ethnie:</label>
+                <select name="ethnie_id" class="@error('ethnie_id') is-invalid @enderror form-select form-control form-select-lg mb-3">
+                    <option>Choisissez votre ethnie</option>
+                    @if (!is_null($ethnies))
+                        @foreach ($ethnies as $ethnie)
+                            <option value="{{ $ethnie->id }}"
+                                {{ !is_null(old('ethnie')) ? 'selected' : '' }}>
+                                {{ Str::ucfirst($ethnie->ethnie) }}
+                            </option>
+                        @endforeach
+                    @endif
+                </select>
+                @error('ethnie_id')
+                <div class="alert alert-danger">Ce champ est obligatoire</div>
+            @enderror
+            </div>
+
+             <div class="form-outline mb-4" style="color: #1b9c1e">
+                <label class="form-label" for="form1Example2"> <span style="color: red">*</span> Date d'exécution  :</label>
+                <input type="date" id="form1Example2" 
+                    class="form-control form-control-lg @error('date_demande') is-invalid @enderror" name="date_demande"
+                placeholder="Saisissez la date !"/>
+                    @error('date_demande')
+                        <div class="alert alert-danger">Veuillez remplir ce champ</div>
+                    @enderror
+            </div>
+
+             <div class="form-outline mb-4" style="color: #1b9c1e">
+                <label class="form-label" for="form1Example2"> <span style="color: red">*</span> Heure :</label>
+                <input type="time" id="form1Example2" 
+                    class="form-control form-control-lg @error('heure_demande') is-invalid @enderror" name="heure_demande"
+                placeholder="Saisissez  l'heure !"/>
+                    @error('heure_demande')
+                        <div class="alert alert-danger">Veuillez remplir ce champ</div>
+                    @enderror
+            </div>
           
             <!-- Message input -->
             <div class="form-outline mb-4" style="color: #1b9c1e">
-                <label class="form-label" for="form4Example3">Observation :</label>
-              <textarea  class="form-control form-control @error('observation') is-invalid @enderror" id="form4Example3" rows="4" name="observation"></textarea>
-              @error('observation')
-                <div class="alert alert-danger">{{ $message }}</div>
-             @enderror
+                <label class="form-label" for="form4Example3">Voulez-vous précicez quelques choses ?</label>
+              <textarea  class="form-control form-control" id="form4Example3" rows="4" name="observation" placeholder="Vous pouvez écrire ici !"></textarea>
             </div>
             <!-- Submit button -->
             <div class="d-grid gap-2 mx-auto mb-5">

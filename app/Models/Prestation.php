@@ -11,4 +11,9 @@ class Prestation extends Model
     protected $table = "prestations";
     protected $guarded = ['id'];
     protected $fillable = ["libelle", "image_prestation", "titre_banner"];
+
+    //* Adhesion :
+    public function demandes(){
+        return $this->hasMany(DemandePrestation::class, "prestation_id")->where(["deleted" => 0]);
+    }
 }

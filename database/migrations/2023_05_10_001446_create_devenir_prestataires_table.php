@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('devenir_prestataires', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id()->autoIncrement();
             $table->string('nom');
             $table->string('prenoms');
             $table->string('civilite')->nullable();

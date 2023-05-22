@@ -78,10 +78,8 @@
                                                 <th class="sort" data-sort="situation_matri">Situation Matrimoniale</th>
                                                 <th class="sort" data-sort="nbre_enfant">Nombre enfants</th>
                                                 <th class="sort" data-sort="telephone">Téléphone 1  </th>
-                                                <th class="sort" data-sort="telephone2">Téléphone 2</th>
                                                 <th class="sort" data-sort="modes">Modes de travail</th>
-                                                <th class="sort" data-sort="civilite">Civilités</th>
-                                                <th class="sort" data-sort="action" style="max-width: 120% !important">Actions</th>
+                                                <th class="sort" data-sort="action">Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody class="list form-check-all">
@@ -97,9 +95,8 @@
                                                 <td class="situation_matri">{{ $prestataire->situation_matri }}</td>
                                                 <td class="nbre_enfant">{{ $prestataire->nombre_enfant }}</td>
                                                 <td class="telephone1">{{ $prestataire->telephone1 }}</td>
-                                                <td class="telephone2">{{ $prestataire->telephone2 }}</td>
                                                 <td class="telephone2">{{ $prestataire->mode->mode }}</td>
-                                                <td class="cilivite">{{ $prestataire->civilite }}</td>
+                                              
                                                 
                                                 <td>
                                                     <div class="d-flex gap-2">
@@ -108,10 +105,7 @@
                                                         </div>
 
                                                         <div class="detail">
-                                                            <button class="btn btn-sm btn-primary edit-item-btn" data-bs-toggle="modal" data-bs-target="">Détail</button>
-                                                        </div>
-
-                                                        <div class="remove">
+                                                            <button class="btn btn-sm btn-primary edit-item-btn" data-bs-toggle="modal" data-bs-target="#detailModal_{{ $prestataire->id }}">Détail</button>
                                                         </div>
                                                        <form id="" 
                                                         action="" 
@@ -119,7 +113,7 @@
                                                         @csrf
                                                         @method('DELETE')
 
-                                                        <button class="btn btn-sm btn-danger remove-item-btn" data-bs-toggle="modal" data-bs-target="#deleteModal_">Supprimer</button>
+                                                        <button class="btn btn-sm btn-danger remove-item-btn" data-bs-toggle="modal" data-bs-target="#deleteModal_">Delete</button>
                                                        </form>
                                                     </div>
                                                 </td>
@@ -244,6 +238,61 @@
             {{-- @endforeach
             @endif --}}
             <!--end modal -->
+
+
+            @if(!is_null( $prestataires ))
+            @foreach( $prestataires as $prestataire )
+          <!-- Modal detail-->
+              <div class="modal fade zoomIn" id="detailModal_{{ $prestataire->id }}" tabindex="-1" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" 
+                              aria-label="Close" id="btn-close"></button>
+                          </div>
+                          <div class="modal-body">
+                              <div class="">
+                                <h5 class="text-center" style="font-weight: bold"> VOIR TOUTES LES INFORMATIONS DU PRESTATAIRE</h5>
+                                  <div class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
+                                      <p class="">Nom: {{ $prestataire->nom }}</p>
+                                      <p class="">Prénoms: {{ $prestataire->prenoms }}</p>
+                                      <p>Téléphone1: {{ $prestataire->telephone1 }}</p>
+                                      <p>Email: {{ $prestataire->email }}</p>
+                                      <p>Mode travail: {{  $prestataire->mode->mode }}</p>
+                                      <p>Civilité: {{  $prestataire->civilite }}</p>
+                                      <p>Date naissance: {{  $prestataire->date_naissance }}</p>
+                                      <p>Situation matrimoniale: {{  $prestataire->situation_matri }}</p>
+                                      <p>Téléphone1: {{  $prestataire->telephone1 }}</p>
+                                      <p>Téléphone2: {{  $prestataire->telephone2 }}</p>
+                                      <p>whatsapp: {{  $prestataire->whatsapp }}</p>
+                                      <p>Ethnie: {{  $prestataire->ethnie->ethnie }}</p>
+                                      <p>Commune: {{  $prestataire->whatsapp }}</p>
+                                      <p>Quartier: {{  $prestataire->whatsapp }}</p>
+                                      <p>Domaine: {{  $prestataire->whatsapp }}</p>
+                                      <p>Année expérience: {{  $prestataire->whatsapp }}</p>
+                                      <p>Salaire: {{  $prestataire->whatsapp }}</p>
+                                      <p>Zone: {{  $prestataire->zone_intervention }}</p>
+                                      <p>Cas urgence: {{  $prestataire->personne_contact }}</p>
+                                      <p>Référence: {{  $prestataire->reference }}</p>
+                                      <p>Contact: {{  $prestataire->reference_contact }}</p>
+                                      <p>Alphabétisation: {{ $prestataire->alphabet->alphabet }}</p>
+                                      <p>Diplome: {{  $prestataire->diplome->diplome }}</p>
+                                      <p>Disponibilité: {{  $prestataire->dispo->dispo }}</p>
+                                      <p>Pièce: {{  $prestataire->piece->piece }}</p>
+                                      <p>Numéro pièce: {{  $prestataire->numero_piece }}</p>
+                                      <p>Canal: {{  $prestataire->canal->canal }}</p>
+                                      <p>Catalogue: {{  $prestataire->catalogue_realisation }}</p>
+                                      <p>Avis: <br> {{  $prestataire->avis }}</p>
+                                      
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          <!--end modal -->
+          @endforeach
+          @endif
 
         </div>
         <!-- container-fluid -->

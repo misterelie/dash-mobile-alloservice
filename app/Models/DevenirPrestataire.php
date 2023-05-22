@@ -52,4 +52,33 @@ class DevenirPrestataire extends Model
         return $this->belongsTo(Mode::class, "mode_id")->where(["deleted" => 0]);
     }
 
+    public function ethnie(){
+        return $this->belongsTo(Ethnie::class, "ethnie_id")->where(["deleted" => 0]);
+    }
+
+    //* Alphabet 
+    public function alphabet(){
+        return $this->belongsTo(Alphabet::class, "alphabet_id")->where(["deleted" => 0]);
+    }
+
+     //* Diplome :
+     public function diplome(){
+        return $this->belongsTo(Diplome::class, "diplome_id")->where(["deleted" => 0]);
+    }
+
+    //* Dispo 
+    public function dispo(){
+        return $this->belongsTo(Dispo::class, "dispo_id");
+    }
+
+    //* Piece
+    public function piece(){
+        return $this->belongsTo(Piece::class, "piece_id");
+    }
+
+    //* Canal
+    public function canal(){
+        return $this->belongsTo(Canal::class, "canal_id");
+    }
+
 }

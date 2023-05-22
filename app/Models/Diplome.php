@@ -11,4 +11,9 @@ class Diplome extends Model
     protected $table = "diplomes";
     protected $guarded = ['id'];
     protected $fillable = ["diplome"];
+
+    //* Adhesion :
+    public function adhesions(){
+        return $this->hasMany(Adhesion::class, "diplome_id")->where(["deleted" => 0]);
+    }
 }

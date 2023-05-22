@@ -1,12 +1,12 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AssistanceController;
 use App\Http\Controllers\Backend\AdminController as AdminController;
 use App\Http\Controllers\DomaineController;
 use App\Http\Controllers\Interfaces\FrontController  as InterfacesFrontController ;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -19,12 +19,20 @@ use App\Http\Controllers\Interfaces\FrontController  as InterfacesFrontControlle
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+
+Route::get('/administration', [AdminController::class, 'dasboard'])->middleware(['auth', 'verified'])->name('admin.dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+require __DIR__.'/auth.php';
+
+
 //SECTION ADMINISTRATION
-Route::get('/administration', [AdminController::class, 'index'])->name("admin.dashboard");
 
 Route::get('/', [InterfacesFrontController::class, 'index'])->name("front.index");
 Route::get('/demande-prestations', [InterfacesFrontController::class, 'demande_prestation'])->name("front.prestation");
@@ -124,3 +132,6 @@ Route::get('/activity.domaine', [DomaineController::class, 'add_domaine'])->name
 Route::post('/save_domaine_activity', [DomaineController::class, 'store_domaine'])->name("save_domaine_activity");
 Route::put('update.domaine/{domaine}', [DomaineController::class, 'update_domaine_activity'])->name("update.domaine");
 Route::delete('delete.domaine/{id}',[DomaineController::class, 'destroy_activity_domaine'])->name("delete.domaine");
+
+
+

@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AssistanceController;
 use App\Http\Controllers\Backend\AdminController as AdminController;
+use App\Http\Controllers\DomaineController;
 use App\Http\Controllers\Interfaces\FrontController  as InterfacesFrontController ;
 
 
@@ -111,3 +113,14 @@ Route::post('/save.about', [AboutController::class, 'store'])->name("save.about"
 Route::put('/about.update/{about}', [AboutController::class, 'update'])->name("about.update");
 Route::delete('/delete.about/{about}', [AboutController::class, 'destroy_about'])->name("delete.about");
 
+//ASSISTANCE
+Route::get('/ajout.assistance', [AssistanceController::class, 'add_assist'])->name("ajout.assistance");
+Route::post('/save.assistance', [AssistanceController::class, 'store_assistance'])->name("save.assistance");
+Route::put('/update.assistance/{assistance}', [AssistanceController::class, 'update'])->name("update.assistance");
+Route::delete('/delete.assistance/{assistance}', [AssistanceController::class, 'delete_assistance'])->name("delete.assistance");
+
+//DOMAINE ACTIVITY
+Route::get('/activity.domaine', [DomaineController::class, 'add_domaine'])->name("activity.domaine");
+Route::post('/save_domaine_activity', [DomaineController::class, 'store_domaine'])->name("save_domaine_activity");
+Route::put('update.domaine/{domaine}', [DomaineController::class, 'update_domaine_activity'])->name("update.domaine");
+Route::delete('delete.domaine/{id}',[DomaineController::class, 'destroy_activity_domaine'])->name("delete.domaine");

@@ -15,4 +15,8 @@ class Mode extends Model
     public function demandes(){
         return $this->hasMany(DemandePrestation::class, "mode_id")->where(["deleted" => 0]);
     }
+
+    public function prestataires(){
+        return $this->hasMany(DevenirPrestataire::class, "mode_id")->where(["deleted" => 0]);
+    }
 }

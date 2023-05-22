@@ -16,35 +16,40 @@ class DevenirPrestataire extends Model
         "prenoms", 
         "civilite", 
         "date_naissance", 
-        "situation_matrimoniale",
+        "situation_matri",
         "nombre_enfant", 
         "telephone1",
         "telephone2",
         "whatsapp",
         "email",
-        "ethnie",
-        "commune",
-        "quartier",
+        "ethnie_id",
+        "commune_id",
+        "quartier_id",
         "photo",
-        "activite",
+        "domaine_id",
         "annee_experience",
         "pretention_salairiale",
         "zone_intervention",
         "personne_contact",
         "reference", 
         'reference_contact',
-        "alphabetisation",
-        "dernier_diplome",
-        "mode_travail",
-        "disponibilite",
-        "nature_piece",
+        "alphabet_id",
+        "diplome_id",
+        "mode_id",
+        "dispo_id",
+        "piece_id",
         "numero_piece",
-        "rencontre_allo_service",
+        "canal_id",
         "date_appel", 
         "copie_piece",
         "copie_dernier_diplome",
         "catalogue_realisation",
-        "observation"
+        "avis"
     ];
+
+    //* Mode
+    public function mode(){
+        return $this->belongsTo(Mode::class, "mode_id")->where(["deleted" => 0]);
+    }
 
 }

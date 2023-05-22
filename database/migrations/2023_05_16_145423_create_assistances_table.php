@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('assistances', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId("user_id")->nullbale();
             $table->string('telephone1', 50)->nullable();
             $table->string('telephone2', 50)->nullable();
             $table->string('telephone3', 50)->nullable();

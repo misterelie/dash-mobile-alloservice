@@ -68,31 +68,39 @@
                                 </div>
 
                                 <div class="table-responsive table-card mt-3 mb-1">
-                                    <table class="table align-middle table-nowrap" id="customerTable">
+                                    <table class="table align-middle table-nowrap" id="customerTable"  style="width:120% !important">
                                         <thead class="table-light">
                                             <tr>
                                                 <th>N°</th>
                                                 <th class="sort" data-sort="customer_name">Noms</th>
                                                 <th class="sort" data-sort="email">Prénoms</th>
-                                                <th class="sort" data-sort="email">Dates naissance</th>
-                                                <th class="sort" data-sort="email">Situation Matrimoniale</th>
-                                                <th class="sort" data-sort="email">Nombre enfants</th>
-                                                <th class="sort" data-sort="email">Téléphone 1  </th>
-                                                <th class="sort" data-sort="email">Téléphone 2</th>
-                                                <th class="sort" data-sort="email">Whatsapp</th>
-                                                <th class="sort" data-sort="action" style="width: 120px !important">Action</th>
+                                                <th class="sort" data-sort="date_naissance">Dates naissance</th>
+                                                <th class="sort" data-sort="situation_matri">Situation Matrimoniale</th>
+                                                <th class="sort" data-sort="nbre_enfant">Nombre enfants</th>
+                                                <th class="sort" data-sort="telephone">Téléphone 1  </th>
+                                                <th class="sort" data-sort="telephone2">Téléphone 2</th>
+                                                <th class="sort" data-sort="modes">Modes de travail</th>
+                                                <th class="sort" data-sort="civilite">Civilités</th>
+                                                <th class="sort" data-sort="action" style="max-width: 120% !important">Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody class="list form-check-all">
-                                            {{-- @if(!is_null($prestations))
-                                            @foreach($prestations as $prestation) --}}
+                                            @if(!is_null( $prestataires ))
+                                            @foreach( $prestataires as $prestataire )
                                             <tr>
                                                 <th scope="row">
-                                                    {{-- {{ $loop->iteration }} --}}
+                                                    {{ $loop->iteration }}
                                                 </th>
-                                                <td class="customer_name">
-                                                </td>
-                                                <td class="email"></td>
+                                                <td class="customer_name">{{ $prestataire->nom }}</td>
+                                                <td class="email">{{ $prestataire->prenoms }}</td>
+                                                <td class="date_naissance">{{ $prestataire->date_naissance }}</td>
+                                                <td class="situation_matri">{{ $prestataire->situation_matri }}</td>
+                                                <td class="nbre_enfant">{{ $prestataire->nombre_enfant }}</td>
+                                                <td class="telephone1">{{ $prestataire->telephone1 }}</td>
+                                                <td class="telephone2">{{ $prestataire->telephone2 }}</td>
+                                                <td class="telephone2">{{ $prestataire->mode->mode }}</td>
+                                                <td class="cilivite">{{ $prestataire->civilite }}</td>
+                                                
                                                 <td>
                                                     <div class="d-flex gap-2">
                                                         <div class="edit">
@@ -116,11 +124,10 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            {{-- @endforeach
-                                            @endif --}}
+                                            @endforeach
+                                            @endif
                                         </tbody>
                                     </table>
-
                             
                                     <div class="noresult" style="display: none">
                                         <div class="text-center">

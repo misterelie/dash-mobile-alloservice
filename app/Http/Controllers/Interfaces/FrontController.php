@@ -3,15 +3,23 @@
 namespace App\Http\Controllers\Interfaces;
 
 use Exception;
+use App\Models\Mode;
+use App\Models\Dispo;
+use App\Models\Piece;
+use App\Models\Ethnie;
+use App\Models\Commune;
 use App\Models\Contact;
+use App\Models\Diplome;
+use App\Models\Domaine;
+use App\Models\Alphabet;
+use App\Models\Quartier;
 use App\Models\Prestation;
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\New_;
 use App\Models\DemandePrestation;
 use App\Models\DevenirPrestataire;
 use App\Http\Controllers\Controller;
-use App\Models\Ethnie;
-use App\Models\Mode;
+use App\Models\Canal;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -83,35 +91,35 @@ class FrontController extends Controller
             'prenoms' => 'required',
             'civilite' => 'required',
             'date_naissance' => 'required',
-            'situation_matrimoniale' => 'nullable',
+            'situation_matri' => 'required',
             'nombre_enfant' => 'nullable',
             'telephone1' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|max:10',
             'telephone2' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|max:10',
             'whatsapp' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|max:10',
             'email' => 'required|email',
-            'ethnie' => 'required',
-            'commune' => 'required',
-            'quartier' => 'required',
+            'ethnie_id' => 'required',
+            'commune_id' => 'required',
+            'quartier_id' => 'required',
             'photo' => 'required',
-            'activite' => 'required',
+            'domaine_id' => 'required',
             'annee_experience' => 'nullable',
             'pretention_salairiale' => 'required|numeric|min:0',
             'zone_intervention' => 'required',
             'personne_contact' => 'required',
             'reference' => 'required',
             'reference_contact' => 'required',
-            'alphabetisation' => 'required',
-            'dernier_diplome' => 'required',
-            'mode_travail' => 'required',
-            'disponibilite' => 'required',
-            'nature_piece' => 'required',
+            'alphabet_id' => 'required',
+            'diplome_id' => 'required',
+            'mode_id' => 'required',
+            'dispo_id' => 'required',
+            'piece_id' => 'required',
             'numero_piece' => 'required',
             'copie_piece' => 'required|mimes:png,jpg,jpeg,csv,txt,pdf|max:2048',
-            'rencontre_allo_service' => 'nullable',
+            'canal_id' => 'nullable',
             'date_appel' => 'required', 
             'copie_dernier_diplome' => 'nullable|mimes:png,jpg,jpeg,csv,txt,pdf|max:2048', 
             'catalogue_realisation' => 'required',
-            'observation' => 'nullable',
+            'avis' => 'nullable',
         ]);
 
         $devenirprestataires = new DevenirPrestataire();
@@ -119,15 +127,13 @@ class FrontController extends Controller
         $devenirprestataires->prenoms = $request->prenoms;
         $devenirprestataires->civilite = $request->civilite;
         $devenirprestataires->date_naissance = $request->date_naissance;
-        $devenirprestataires->situation_matrimoniale = $request->situation_matrimoniale;
+        $devenirprestataires->situation_matri = $request->situation_matri;
         $devenirprestataires->nombre_enfant = $request->nombre_enfant;
         $devenirprestataires->telephone1 = $request->telephone1;
         $devenirprestataires->telephone2 = $request->telephone2;
         $devenirprestataires->whatsapp = $request->whatsapp;
         $devenirprestataires->email = $request->email;
-        $devenirprestataires->ethnie = $request->ethnie;
-        $devenirprestataires->commune = $request->commune;
-        $devenirprestataires->quartier = $request->quartier;
+      
          //tratietement d'image
         if ($request->hasFile('photo')) {
             $imag = $request->photo;
@@ -152,23 +158,56 @@ class FrontController extends Controller
             $devenirprestataires->copie_dernier_diplome = $filepiece;
         }
 
-        $devenirprestataires->activite = $request->activite;
+        if (!is_null($request->quartier_id)) {
+            $devenirprestataires->quartier_id = $request->quartier_id;
+        }
+
+        if (!is_null($request->commune_id)) {
+            $devenirprestataires->commune_id = $request->commune_id;
+        }
+
+        if (!is_null($request->ethnie_id)) {
+            $devenirprestataires->ethnie_id = $request->ethnie_id;
+        }
+
+        if (!is_null($request->domaine_id)) {
+            $devenirprestataires->domaine_id = $request->domaine_id;
+        }
+
+        if (!is_null($request->alphabet_id)) {
+            $devenirprestataires->alphabet_id = $request->alphabet_id;
+        }
+
+        if (!is_null($request->diplome_id)) {
+            $devenirprestataires->diplome_id = $request->diplome_id;
+        }
+
+        if (!is_null($request->mode_id)) {
+            $devenirprestataires->mode_id = $request->mode_id;
+        }
+
+        if (!is_null($request->dispo_id)) {
+            $devenirprestataires->dispo_id = $request->dispo_id;
+        }
+
+        if (!is_null($request->piece_id)) {
+            $devenirprestataires->piece_id = $request->piece_id;
+        }
+
+        if (!is_null($request->canal_id)) {
+            $devenirprestataires->canal_id = $request->canal_id;
+        }
+
         $devenirprestataires->annee_experience = $request->annee_experience;
         $devenirprestataires->pretention_salairiale = $request->pretention_salairiale;
         $devenirprestataires->zone_intervention = $request->zone_intervention;
         $devenirprestataires->personne_contact = $request->personne_contact;
         $devenirprestataires->reference = $request->reference;
         $devenirprestataires->reference_contact = $request->reference_contact;
-        $devenirprestataires->alphabetisation = $request->alphabetisation;
-        $devenirprestataires->dernier_diplome = $request->dernier_diplome;
-        $devenirprestataires->mode_travail = $request->mode_travail;
-        $devenirprestataires->disponibilite = $request->disponibilite;
-        $devenirprestataires->nature_piece = $request->nature_piece;
         $devenirprestataires->numero_piece = $request->numero_piece;
-        $devenirprestataires->rencontre_allo_service = $request->rencontre_allo_service;
         $devenirprestataires->date_appel = $request->date_appel;
         $devenirprestataires->catalogue_realisation = $request->catalogue_realisation;
-        $devenirprestataires->observation = $request->observation;
+        $devenirprestataires->avis = $request->avis;
         $devenirprestataires->save();
         return redirect()->back()->with('success', 'Félicitations!  Votre demande a été envoyé avec succès ');
     }
@@ -194,12 +233,20 @@ class FrontController extends Controller
         
     }
 
-
-
-
      //devenir un prestataire
      public function prestataire(){
-        return view('front.prestataire');
+        $ethnies = Ethnie::all();
+        $communes = Commune::all();
+        $quartiers = Quartier::all();
+        $domaines = Domaine::all();
+        $alphabets = Alphabet::all();
+        $canals = Canal::all();
+        $modes = Mode::all();
+        $dispos = Dispo::all();
+        $pieces = Piece::all();
+        $diplomes = Diplome::all();
+        return view('front.prestataire', 
+              compact('ethnies', 'pieces','communes', 'quartiers', 'domaines', 'alphabets', 'diplomes', 'dispos', 'modes', 'canals'));
     }
 
     //all prestations

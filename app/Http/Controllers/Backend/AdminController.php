@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
-use App\Models\Alphabet;
-use App\Models\Canal;
-use App\Models\Commune;
-use App\Models\DemandePrestation;
-use App\Models\Diplome;
-use App\Models\Dispo;
-use App\Models\Domaine;
-use App\Models\Ethnie;
 use App\Models\Mode;
+use App\Models\Canal;
+use App\Models\Dispo;
 use App\Models\Piece;
-use App\Models\Prestation;
+use App\Models\Ethnie;
+use App\Models\Commune;
+use App\Models\Diplome;
+use App\Models\Domaine;
+use App\Models\Alphabet;
 use App\Models\Quartier;
+use App\Models\Prestation;
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\Cast;
+use App\Models\DemandePrestation;
+use App\Models\DevenirPrestataire;
+use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
@@ -87,7 +88,8 @@ class AdminController extends Controller
     }
     //LA LISTE DES PRESTATAIRES
     public function list_prestataire(){
-        return view('admin.devenir-prestataire.devenir_presta');
+        $prestataires = DevenirPrestataire::orderBy('id', 'asc')->get();
+        return view('admin.devenir-prestataire.devenir_presta', compact('prestataires'));
     }
 
 

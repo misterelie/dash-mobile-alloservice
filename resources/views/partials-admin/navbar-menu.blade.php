@@ -475,65 +475,7 @@
                         <li class="nav-item">
                             <a href="{{ url('liste/demande_prestation')}}" class="nav-link" data-key="t-starter">gestion des demandes</a>
                         </li>
-                        {{-- <li class="nav-item">
-                            <a href="#sidebarProfile" class="nav-link" data-bs-toggle="collapse"
-                                role="button" aria-expanded="false" aria-controls="sidebarProfile"
-                                data-key="t-profile"> Profile
-                            </a>
-                            <div class="collapse menu-dropdown" id="sidebarProfile">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a href="pages-profile.html" class="nav-link"
-                                            data-key="t-simple-page"> Simple Page </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="pages-profile-settings.html" class="nav-link"
-                                            data-key="t-settings"> Settings </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li> --}}
-                        {{-- <li class="nav-item">
-                            <a href="pages-team.html" class="nav-link" data-key="t-team"> Team </a>
-                        </li> --}}
-                        {{-- <li class="nav-item">
-                            <a href="pages-timeline.html" class="nav-link" data-key="t-timeline"> Timeline
-                            </a>
-                        </li> --}}
-                        {{-- <li class="nav-item">
-                            <a href="pages-faqs.html" class="nav-link" data-key="t-faqs"> FAQs </a>
-                        </li> --}}
-                        {{-- <li class="nav-item">
-                            <a href="pages-pricing.html" class="nav-link" data-key="t-pricing"> Pricing </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages-gallery.html" class="nav-link" data-key="t-gallery"> Gallery </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages-maintenance.html" class="nav-link" data-key="t-maintenance">
-                                Maintenance </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages-coming-soon.html" class="nav-link" data-key="t-coming-soon">
-                                Coming Soon </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages-sitemap.html" class="nav-link" data-key="t-sitemap"> Sitemap </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages-search-results.html" class="nav-link"
-                                data-key="t-search-results"> Search Results </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages-privacy-policy.html" class="nav-link"><span
-                                    data-key="t-privacy-policy">Privacy Policy</span> <span
-                                    class="badge badge-pill bg-success" data-key="t-new">New</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages-term-conditions.html" class="nav-link"><span
-                                    data-key="t-term-conditions">Term & Conditions</span> <span
-                                    class="badge badge-pill bg-success" data-key="t-new">New</span></a>
-                        </li> --}}
+                       
                     </ul>
                 </div>
             </li>
@@ -763,21 +705,13 @@
                     aria-expanded="false" aria-controls="sidebarLanding">
                     <i class="mdi mdi-help-circle-outline"></i> <span data-key="t-landing">Assistance</span>
                 </a>
-                {{-- <div class="collapse menu-dropdown" id="sidebarLanding">
+                <div class="collapse menu-dropdown" id="sidebarLanding">
                     <ul class="nav nav-sm flex-column">
                         <li class="nav-item">
-                            <a href="landing.html" class="nav-link" data-key="t-one-page"> One Page </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="nft-landing.html" class="nav-link" data-key="t-nft-landing"> NFT
-                                Landing </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="job-landing.html" class="nav-link"><span data-key="t-job">Job</span>
-                                <span class="badge badge-pill bg-success" data-key="t-new">New</span></a>
+                            <a href="{{ route('ajout.assistance')}}" class="nav-link" data-key="t-one-page">Voir liste</a>
                         </li>
                     </ul>
-                </div> --}}
+                </div> 
             </li>
 
             <li class="nav-item">
@@ -850,6 +784,10 @@
 
                                 <li class="nav-item">
                                     <a href="{{ route('ajout.about') }}" class="nav-link" data-key="t-cards">Présentation</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="{{ route('activity.domaine') }}" class="nav-link" data-key="t-cards">Domaines activité</a>
                                 </li>
                                 {{-- <li class="nav-item">
                                     <a href="ui-colors.html" class="nav-link" data-key="t-colors">Colors</a>

@@ -14,10 +14,10 @@ class AssistanceController extends Controller
 
     public function store_assistance(Request $request){
         $request->validate([
-            'telephone1' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|max:10',
-            'telephone2' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|max:10',
-            'telephone3' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|max:10',
-            'whatsapp' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|max:10',
+            'telephone1' =>'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'telephone2' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'telephone3' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'whatsapp' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'email' => 'required|email:unique',
         ]);
 
@@ -33,10 +33,10 @@ class AssistanceController extends Controller
 
     public function update(Request $request, Assistance $assistance){
         $request->validate([
-            'telephone1' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|max:10',
-            'telephone2' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|max:10',
-            'telephone3' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|max:10',
-            'whatsapp' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|max:10',
+            'telephone1' =>'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'telephone2' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'telephone3' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'whatsapp' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'email' => 'required|email:unique',
         ]);
 

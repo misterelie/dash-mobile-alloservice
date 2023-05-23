@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Interfaces;
 
 use Exception;
 use App\Models\Mode;
+use App\Models\About;
+use App\Models\Canal;
 use App\Models\Dispo;
 use App\Models\Piece;
 use App\Models\Ethnie;
@@ -19,7 +21,7 @@ use PhpParser\Node\Expr\New_;
 use App\Models\DemandePrestation;
 use App\Models\DevenirPrestataire;
 use App\Http\Controllers\Controller;
-use App\Models\Canal;
+use App\Models\Assistance;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -28,7 +30,9 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class FrontController extends Controller
 {
     public function index(){
-        return view('front.index');
+        $abouts = About::all();
+        $prestations = Prestation::latest()->limit(10)->get();
+        return view('front.index', compact('abouts', 'prestations'));
     }
 
     /* DEMANDE DE PRESTATION */
@@ -45,19 +49,19 @@ class FrontController extends Controller
 
     public function store(Request $request)
     {
-        //dd($request->all());
+       // dd($request->all());
         $request->validate([
             'nom' => 'required',
             'prenoms' => 'required',
-            'telephone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|max:10',
+            'telephone' =>'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'email' => 'nullable|email:unique',
             'prestation_id' => 'required',
             'mode_id' => 'required',
             'salaire_propose' => 'required|numeric|min:0',
-            'age_demande' => 'required',
+            'age_demande' => 'nullable',
             'ethnie_id' => 'nullable',
-            'date_demande' => 'required',
-            'heure_demande'  => 'required',
+            'date_demande' => 'nullable',
+            'heure_demande'  => 'nullable',
             'observation' => 'nullable'
         ]);
         $askprestations = new DemandePrestation();
@@ -65,11 +69,21 @@ class FrontController extends Controller
         $askprestations->prenoms = $request->prenoms;
         $askprestations->email = $request->email;
         $askprestations->telephone = $request->telephone;
-        $askprestations->prestation_id = $request->prestation_id;
-        $askprestations->mode_id = $request->mode_id;
+
+        if (!is_null($request->prestation_id)) {
+            $askprestations->prestation_id = $request->prestation_id;
+        }
+
+        if (!is_null($request->mode_id)) {
+            $askprestations->mode_id = $request->mode_id;
+        }
+
+        if (!is_null($request->ethnie_id)) {
+            $askprestations->ethnie_id = $request->ethnie_id;
+        }
+      
         $askprestations->salaire_propose = intval($request->salaire_propose);
         $askprestations->age_demande = $request->age_demande;
-        $askprestations->ethnie_id = $request->ethnie_id;
         $askprestations->date_demande = $request->date_demande;
         $askprestations->heure_demande = $request->heure_demande;
         $askprestations->observation = $request->observation;
@@ -114,10 +128,10 @@ class FrontController extends Controller
             'dispo_id' => 'required',
             'piece_id' => 'required',
             'numero_piece' => 'required',
-            'copie_piece' => 'required|mimes:png,jpg,jpeg,csv,txt,pdf|max:2048',
+            'copie_piece' => 'required|mimes:png,jpg,jpeg,csv,txt,pdf',
             'canal_id' => 'nullable',
             'date_appel' => 'required', 
-            'copie_dernier_diplome' => 'nullable|mimes:png,jpg,jpeg,csv,txt,pdf|max:2048', 
+            'copie_dernier_diplome' => 'nullable|mimes:png,jpg,jpeg,csv,txt,pdf', 
             'catalogue_realisation' => 'required',
             'avis' => 'nullable',
         ]);
@@ -251,7 +265,8 @@ class FrontController extends Controller
 
     //all prestations
     public function all_prestations(){
-        return view('front.nos-prestations');
+        $prestations = Prestation::all();
+        return view('front.nos-prestations', compact('prestations'));
     }
 
     //temongnage
@@ -260,6 +275,7 @@ class FrontController extends Controller
     }
 
     public function help(){
-        return view('front.assistance');
+        $assistances = Assistance::all();
+        return view('front.assistance', compact('assistances'));
     }
 }

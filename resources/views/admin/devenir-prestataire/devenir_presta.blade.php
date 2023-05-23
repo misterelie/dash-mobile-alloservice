@@ -72,6 +72,7 @@
                                         <thead class="table-light">
                                             <tr>
                                                 <th>N°</th>
+                                                <th class="sort" data-sort="photo">Photos</th>
                                                 <th class="sort" data-sort="customer_name">Noms</th>
                                                 <th class="sort" data-sort="email">Prénoms</th>
                                                 <th class="sort" data-sort="date_naissance">Dates naissance</th>
@@ -89,6 +90,9 @@
                                                 <th scope="row">
                                                     {{ $loop->iteration }}
                                                 </th>
+                                                <td class="photo"><img src="/PrestatairePhoto/{{ $prestataire->photo }}"
+                                                    class="img-fluid rounded-circle" width="50px" height="">
+                                                </td>
                                                 <td class="customer_name">{{ $prestataire->nom }}</td>
                                                 <td class="email">{{ $prestataire->prenoms }}</td>
                                                 <td class="date_naissance">{{ $prestataire->date_naissance }}</td>

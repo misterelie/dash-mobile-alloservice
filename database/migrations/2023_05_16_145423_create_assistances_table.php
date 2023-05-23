@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('assistances', function (Blueprint $table) {
-            $table->id();
+            $table->id()->autoIncrement;
             $table->string('telephone1', 50)->nullable();
             $table->string('telephone2', 50)->nullable();
             $table->string('telephone3', 50)->nullable();

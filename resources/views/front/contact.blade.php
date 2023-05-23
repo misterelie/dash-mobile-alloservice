@@ -11,7 +11,6 @@
         </div>
     </div><br><br>
     <div class="container">
-
         <div class="form-group ">
             <!--AFFICHER LE MESSAGE DE SUCCESS-->
             @if($message = Session::get('success'))
@@ -37,28 +36,28 @@
             @csrf
 
             <!-- Name input -->
-            <div class="form-outline mb-4" style="color: #1b9c1e">
-                <label class="form-label" for="form1Example2">Nom<span style="color: red">(*)</span> :</label>
+            <div class="form-outline mb-3" style="color: #1b9c1e">
+                <label class="form-label" for="form1Example2"><span style="color: red">*</span> Nom:</label>
                 <input type="text" id="form1Example2" class="form-control form-control-lg" name="nom" placeholder="Entrer votre nom svp !" required/>
              </div>
 
-             <div class="form-outline mb-4" style="color: #1b9c1e">
-                <label class="form-label" for="form1Example2">Prenom(s)<span style="color: red">(*)</span> :</label>
+             <div class="form-outline mb-3" style="color: #1b9c1e">
+                <label class="form-label" for="form1Example2"><span style="color: red">*</span> Prénoms:</label>
                 <input type="text" id="form1Example2" class="form-control form-control-lg" name="prenoms" placeholder="Entrer votre prenoms svp !" required/>
              </div>
     
-             <div class="form-outline mb-4" style="color: #1b9c1e">
-                <label class="form-label" for="form1Example2">Email<span style="color: red">(*)</span></label>
+             <div class="form-outline mb-3" style="color: #1b9c1e">
+                <label class="form-label" for="form1Example2"><span style="color: red">*</span> Email:</label>
                 <input type="email" id="form1Example2" name="email"  class="form-control form-control-lg" required placeholder="Saisissez votre email !"/>
              </div>
 
-             <div class="form-outline mb-4" style="color: #1b9c1e">
-                <label class="form-label" for="form1Example2">Objet<span style="color: red">(*)</span></label>
+             <div class="form-outline mb-3" style="color: #1b9c1e">
+                <label class="form-label" for="form1Example2"><span style="color: red">*</span> Objet:</label>
                 <input type="text" id="form1Example2" name="objet"  class="form-control form-control-lg" required placeholder="Saisissez votre objet !"/>
              </div>
             <!-- Message input -->
-            <div class="form-outline mb-4" style="color: #1b9c1e">
-                <label class="form-label" for="form4Example3">Message :</label>
+            <div class="form-outline mb-3" style="color: #1b9c1e">
+                <label class="form-label" for="form4Example3"><span style="color: red">*</span> Message:</label>
               <textarea 
               class="form-control form-control" name="message" id="form4Example3" rows="4" placeholder="Ecrivez votre message ici !"></textarea>
             </div>

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('domaines', function (Blueprint $table) {
-            $table->id();
+            $table->id()->autoIncrement;
             $table->string('domaine')->default(NULL)->nullable();
             $table->integer('updated_by')->nullable()->default(NULL);
             $table->boolean('deleted')->default(FALSE)->nullable();

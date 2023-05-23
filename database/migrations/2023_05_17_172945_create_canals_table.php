@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('canals', function (Blueprint $table) {
-            $table->id();
+            $table->id()->autoIncrement;
             $table->string('canal')->default(NULL)->nullable();
             $table->timestamps();
         });

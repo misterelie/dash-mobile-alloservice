@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('devenir_prestataires', function (Blueprint $table) {
-            $table->id()->autoIncrement();
+            $table->id()->autoIncrement;
             $table->string('nom');
             $table->string('prenoms');
             $table->string('civilite')->nullable();
@@ -34,13 +34,13 @@ return new class extends Migration
             $table->string('personne_contact')->nullable();
             $table->string('reference')->nullable();
             $table->string('reference_contact')->nullable();
-            $table->string('alphabet_id')->nullable();
-            $table->integer('diplome_id')->nullable();
-            $table->integer('mode_id')->nullable();
-            $table->integer('dispo_id')->nullable();
-            $table->integer('piece_id')->nullable();
+            $table->foreignId('alphabet_id')->nullable();
+            $table->foreignId('diplome_id')->nullable();
+            $table->foreignId('mode_id')->nullable();
+            $table->foreignId('dispo_id')->nullable();
+            $table->foreignId('piece_id')->nullable();
             $table->string('numero_piece')->nullable();
-            $table->string('canal_id')->nullable();
+            $table->foreignId('canal_id')->nullable();
             $table->date('date_appel')->nullable();
             $table->string('copie_piece')->nullable();
             $table->string('copie_dernier_diplome')->nullable();

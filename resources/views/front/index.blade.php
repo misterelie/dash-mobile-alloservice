@@ -209,13 +209,17 @@
                         <h5 class="title justify-content-center pt-1 ls-normal mb-4 text-center" style="font-size: 16px">
                             Nos prestations
                         </h5>
+                        @if(!is_null($prestations))
+                        @foreach($prestations as $prestation)
                         <div class="col-6 card-section">
                             <div class="block product no-border z-depth-2-top z-depth-2--hover mb-2">
                                 <div class="block-image">
+                                   @if(!is_null($prestation->image_prestation))
                                     <a href="#">
-                                        <img src="https://www.alloservice.ci/Images/542cbf6b7cd1b09ce700fb923a561184.jpg"
+                                        <img src="../uploadsprestation/{{ $prestation->image_prestation}}"
                                             class="img-center">
-                                    </a>
+                                        </a>
+                                   @endif
                                 </div>
                                 <div class="block-body text-center">
                                     <div class="row">
@@ -223,7 +227,7 @@
                                             <h3 class="heading heading-5 strong-600"
                                                 style="background-color: #1b9c1e; margin-bottom: 0px">
                                                 <a href="#"
-                                                    style="color: #fff; font-weight:bold">Jardiniers</a> 
+                                                    style="color: #fff; font-weight:bold">{{ $prestation->libelle }}</a> 
                                             </h3>
                                         </div>
                                         <div class="col-lg-12">
@@ -247,204 +251,11 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-6 card-section">
-                            <div class="block product no-border z-depth-2-top z-depth-2--hover mb-2">
-                                <div class="block-image">
-                                    <a href="#">
-                                        <img src="https://www.alloservice.ci/Images/d14a85a4d69c87210d8d956edaef51fe.jpg"
-                                            class="img-center">
-                                    </a>
-                                </div>
-                                <div class="block-body text-center">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <h3 class="heading heading-5 strong-600"
-                                                style="background-color: #1b9c1e; margin-bottom: 0px">
-                                                <a href="{{ route('front.prestation') }}"
-                                                    style="color: #fff; font-weight:bold">Mécanicien</a>
-                                            </h3>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <a href="{{ route('front.prestation') }}">
-                                                <button type="button" id="prevBtn">
-                                                    Demander la prestation <img src="{{ asset('assets/images/point.png') }}" 
-                                                    width="" class="img-fluid" alt=""> Cliquez ici
-                                                </button>
-                                            </a>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <a href="{{route('front.prestataire')}}">
-                                                <button type="button" id="prevBtn" style="color: #1b9c1e; background-color: #e6e7e8">
-                                                    Devenir un prestataire<br> <img src="{{ asset('assets/images/point_blue.png') }}" 
-                                                    width="" class="img-fluid" alt=""> Cliquez ici
-                                                </button>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
+                        @endif
                     </div>
 
-                    <div class="row">
-                        <div class="col-6 card-section">
-                            <div class="block product no-border z-depth-2-top z-depth-2--hover mb-2">
-                                <div class="block-image">
-                                    <a href="#">
-                                        <img src="https://www.alloservice.ci/Images/5ee3020f0a7f44c9015e0cfe02892d6c.jpg"
-                                            class="img-center">
-                                    </a>
-                                </div>
-                                <div class="block-body text-center">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <h3 class="heading heading-5 strong-600"
-                                                style="background-color: #1b9c1e; margin-bottom: 0px">
-                                                <a href="{{ route('front.prestation') }}"
-                                                    style="color: #fff; font-weight:bold">Menusier</a>
-                                            </h3>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <a href="{{ route('front.prestation') }}">
-                                                <button type="button" id="prevBtn">Demander la prestation 
-                                                    <img src="{{ asset('assets/images/point.png') }}" 
-                                                    width="" class="img-fluid" alt=""> Cliquez ici
-                                                </button>
-                                            </a>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <a href="{{route('front.prestataire')}}">
-                                                <a href="{{route('front.prestataire')}}">
-                                                    <button type="button" id="prevBtn" style="color: #1b9c1e; background-color: #e6e7e8">
-                                                        Devenir un prestataire<br> <img src="{{ asset('assets/images/point_blue.png') }}" 
-                                                        width="" class="img-fluid" alt=""> Cliquez ici
-                                                    </button>
-                                                </a>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-6 card-section">
-                            <div class="block product no-border z-depth-2-top z-depth-2--hover mb-2">
-                                <div class="block-image">
-                                    <a href="#">
-                                        <img src="https://www.alloservice.ci/Images/ed4239edd6dbb061e604a6f970fd0c48.jpg"
-                                            class="img-center">
-                                    </a>
-                                </div>
-                                <div class="block-body text-center">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <h3 class="heading heading-5 strong-600"
-                                                style="background-color: #1b9c1e; margin-bottom: 0px">
-                                                <a href="{{ route('front.prestation') }}"
-                                                    style="color: #fff; font-weight:bold">Coiffeurs & Coiffeuses</a>
-                                            </h3>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <a href="{{ route('front.prestation') }}">
-                                                <button type="button" id="prevBtn">Demander la prestation 
-                                                    <img src="{{ asset('assets/images/point.png') }}" 
-                                                    width="" class="img-fluid" alt=""> Cliquez ici
-                                                </button>
-                                            </a>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <a href="{{route('front.prestataire')}}">
-                                                <button type="button" id="prevBtn" style="color: #1b9c1e; background-color: #e6e7e8">
-                                                    Devenir un prestataire<br> <img src="{{ asset('assets/images/point_blue.png') }}" 
-                                                    width="" class="img-fluid" alt=""> Cliquez ici
-                                                </button>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-6 card-section">
-                            <div class="block product no-border z-depth-2-top z-depth-2--hover mb-2">
-                                <div class="block-image">
-                                    <a href="#">
-                                        <img src="https://www.alloservice.ci/Images/eacee773d9ebcae92901fd6e4caea35b.jpg"
-                                            class="img-center">
-                                    </a>
-                                </div>
-                                <div class="block-body text-center">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <h3 class="heading heading-5 strong-600"
-                                                style="background-color: #1b9c1e; margin-bottom: 0px">
-                                                <a href="{{ route('front.prestation') }}"
-                                                    style="color: #fff; font-weight:bold">Chauffeurs</a>
-                                            </h3>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <a href="{{ route('front.prestation') }}">
-                                                <button type="button" id="prevBtn">Demander la prestation 
-                                                    <img src="{{ asset('assets/images/point.png') }}" 
-                                                    width="" class="img-fluid" alt=""> Cliquez ici
-                                                </button>
-                                            </a>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <a href="{{route('front.prestataire')}}">
-                                                <button type="button" id="prevBtn" style="color: #1b9c1e; background-color: #e6e7e8">
-                                                    Devenir un prestataire<br> <img src="{{ asset('assets/images/point_blue.png') }}" 
-                                                    width="" class="img-fluid" alt=""> Cliquez ici
-                                                </button>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-6 card-section">
-                            <div class="block product no-border z-depth-2-top z-depth-2--hover mb-2">
-                                <div class="block-image">
-                                    <a href="#">
-                                        <img src="https://www.alloservice.ci/Images/d0c8fc7fd66d8ccc9f720279eda89726.jpg"
-                                            class="img-center">
-                                    </a>
-                                </div>
-                                <div class="block-body text-center">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <h3 class="heading heading-5 strong-600"
-                                                style="background-color: #1b9c1e; margin-bottom: 0px">
-                                                <a href="{{ route('front.prestation') }}"
-                                                    style="color: #fff; font-weight:bold">Femmes de ménage</a>
-                                            </h3>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <a href="{{ route('front.prestation') }}">
-                                                <button type="button" id="prevBtn">Demander la prestation 
-                                                    <img src="{{ asset('assets/images/point.png') }}" 
-                                                    width="" class="img-fluid" alt=""> Cliquez ici
-                                                </button>
-                                            </a>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <a href="{{route('front.prestataire')}}">
-                                                <button type="button" id="prevBtn" style="color: #1b9c1e; background-color: #e6e7e8">
-                                                    Devenir un prestataire<br> <img src="{{ asset('assets/images/point_blue.png') }}" 
-                                                    width="" class="img-fluid" alt=""> Cliquez ici
-                                                </button>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div><br>
-
+                   
                     <main class="px-3">
                         <p class="text-center">
                           <a href="{{route('front.nos-prestations')}}" class="btn btn btn-primary"  style="background-color: #3800bf">
@@ -457,32 +268,7 @@
 
       
         <section id="section-content">
-            <div class="container  m-auto mx-auto">
-                <div class="text-center">
-                    <img class="d-block mx-auto img-fluid"
-                        src="{{ asset('assets/images/eli1.png') }}" alt="" width="50"
-                        id="img-content">
-                    <h5 style="color: #3800bf" class="fw-bold text-body-emphasis">A propos de nous </h5>
-                    <div class="col-lg-6 mx-auto">
-                        <p style="font-style: italic; font-size: 12px" class="lead">Allô service, fort de son image et
-                            de sa
-                            notoriété s'engage à toujours
-                            mettre au service de ses clients des prestataires professionnels
-                            maitrisant leurs domaines d'activité. Nos prestataires sont testés et
-                            formés et évalués. Seuls les meilleurs, répondant à des critères très
-                            sélectif de rigueur et de professionnalisme, sont gardés et mis à
-                            disposition de nos clients.
-                        </p>
-    
-                        <main class="px-3">
-                            <p class="text-center">
-                              <a href="{{route('front.contact')}}" class="btn btn-primary"  style="background-color: #3800bf">
-                                Contactez-nous ici !</a>
-                            </p>
-                        </main>
-                    </div>
-                </div>
-            </div>
+            @include('front.about')
         </section><br><br><br>
 
         <section>

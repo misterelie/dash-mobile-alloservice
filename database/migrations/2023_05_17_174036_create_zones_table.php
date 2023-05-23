@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('zones', function (Blueprint $table) {
-            $table->id();
+            $table->id()->autoIncrement;
             $table->string('zone_intervention')->default(NULL)->nullable();
             $table->timestamps();
         });

@@ -172,31 +172,31 @@
 
                                 <div class="mb-3">
                                     <label for="customername-field" class="form-label">Téléphone 1</label>
-                                    <input type="number" id="customername-field" class="form-control" name="telephone1" 
+                                    <input type="tel"  id="phone1" id="customername-field" class="form-control" name="telephone1" 
                                     placeholder="Entrez le numéro " required/>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="customername-field" class="form-label">telephone2</label>
-                                    <input type="number" id="customername-field" class="form-control" name="telephone2" 
+                                    <input type="tel" id="phone2" id="customername-field" class="form-control" name="telephone2" 
                                     placeholder="Entrez le nom" required/>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="customername-field" class="form-label">telephone3</label>
-                                    <input type="number" id="customername-field" class="form-control" name="telephone3" 
+                                    <input type="tel" id="telephone3" id="customername-field" class="form-control" name="telephone3" 
                                     placeholder="Entrez le nom"/>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="customername-field" class="form-label">Whatsapp</label>
-                                    <input type="number" id="customername-field" class="form-control" name="whatsapp" 
+                                    <label for="customername-field"  class="form-label">Whatsapp</label>
+                                    <input type="tel" id="customername-field"  id="whatsapp" class="form-control" name="whatsapp" 
                                     placeholder="Entrez le numéro whatsapp"/>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="customername-field" class="form-label">Adresse email</label>
-                                    <input type="email" id="customername-field" class="form-control" name="email" 
+                                    <input type="email" id="customername" class="form-control" name="email" 
                                     placeholder="Entrez l'email" required/>
                                 </div>
                             </div>
@@ -238,26 +238,26 @@
 
                                 <div class="mb-3">
                                     <label for="customername-field" class="form-label">Téléphone 1</label>
-                                    <input type="number" id="customername-field" value="{{ $assistance->telephone1 }}" class="form-control" name="telephone1" 
+                                    <input type="tel" id="customername-field" value="{{ $assistance->telephone1 }}" class="form-control" name="telephone1" 
                                     placeholder="Entrez le numéro"/>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="customername-field" class="form-label">telephone2</label>
-                                    <input type="number" id="customername-field" value="{{ $assistance->telephone2 }}"  class="form-control" name="telephone2" 
+                                    <input type="tel" id="customername-field" value="{{ $assistance->telephone2 }}"  class="form-control" name="telephone2" 
                                     placeholder="Entrez le nom"/>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="customername-field" class="form-label">telephone3</label>
-                                    <input type="number" id="customername-field" 
+                                    <input type="tel" id="phone" id="customername-field" 
                                     value="{{ $assistance->telephone3 }}"  class="form-control" name="telephone3" 
                                     placeholder="Entrez le nom"/>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="customername-field" class="form-label">Whatsapp</label>
-                                    <input type="number" id="customername-field" value="{{ $assistance->whatsapp }}"  class="form-control" name="whatsapp" 
+                                    <input type="tel"  id="phone" id="customername-field" value="{{ $assistance->whatsapp }}"  class="form-control" name="whatsapp" 
                                     placeholder="Entrez le numéro whatsapp"/>
                                 </div>
 

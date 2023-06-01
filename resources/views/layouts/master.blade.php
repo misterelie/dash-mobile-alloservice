@@ -46,7 +46,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a href="{{ route('front.prestation') }}"
+                                <a href="{{ route('ask.prestation') }}"
                                     class="nav-link text-truncate">
                                     <i class="fa  fa-tasks"></i><span class="ms-1 d-sm-inline">Demande de
                                         prestations</span>
@@ -54,7 +54,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a href="{{ route('front.prestataire') }}"
+                                <a href="{{ route('ask.prestataire') }}"
                                     class="nav-link text-truncate">
                                     <i class="fa fa-users"></i><span class="ms-1 d-sm-inline">Devenir prestataire</span>
                                 </a>
@@ -158,7 +158,7 @@
         // This function will figure out which tab to display
         var x = document.getElementsByClassName("tab");
         // Exit the function if any field in the current tab is invalid:
-        if (n == 1 && !validateForm()) return false;
+        if (n == 0 && !validateForm()) return false;
         // Hide the current tab:
         x[currentTab].style.display = "none";
         // Increase or decrease the current tab by 1:

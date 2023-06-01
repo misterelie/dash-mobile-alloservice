@@ -4,13 +4,13 @@
 
 <!-- Hero -->
 <section style="background: #3800bf;">
-    <div class="">
-        <div class="p-4 shadow-4 w">
-            <p class="text-center pt-5" style="color: #fff; font-size: 30px">
-             Besoin d'assistance
-            </p>
-          </div>
-    </div>
+  <div class="pt-4">
+      <div class="shadow-4 w">
+          <p class="text-center pt-3" style="color: #fff; font-size: 20px">
+              <a href="{{route('front.index')}}"><i class="fa fa-arrow-left" aria-hidden="true" style="color: #ffff; margin: 15px;"></i></a> BESOIN D'ASSISTANCE
+          </p>
+      </div>
+  </div>
 </section>
 
 @if(!is_null($assistances))

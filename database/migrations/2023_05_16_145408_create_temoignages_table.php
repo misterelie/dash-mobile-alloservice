@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('temoignages', function (Blueprint $table) {
             $table->id()->autoIncrement;
-            $table->string('photo')->nullable();
-            $table->text('descrption')->nullable();
-            $table->longText('plus_detail')->nullable();
+            $table->integer('user_id')->nullable();
+            $table->string('nom');
+            $table->string('contact', 50)->nullable();
+            $table->string('photo_person')->nullable();
+            $table->integer('etat')->default(1);
+            $table->longText('texte')->nullable();
             $table->timestamps();
         });
     }

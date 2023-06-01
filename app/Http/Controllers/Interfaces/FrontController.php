@@ -22,6 +22,7 @@ use App\Models\DemandePrestation;
 use App\Models\DevenirPrestataire;
 use App\Http\Controllers\Controller;
 use App\Models\Assistance;
+use App\Models\Temoignage;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -31,16 +32,29 @@ class FrontController extends Controller
 {
     public function index(){
         $abouts = About::all();
+        $demandeprestations = DemandePrestation::count();
+        $prestataires = Prestation::count();
+        // $domaine = Domaine::all();
+        $domaines = Domaine::orderBy('id','asc')->get();
         $prestations = Prestation::latest()->limit(10)->get();
-        return view('front.index', compact('abouts', 'prestations'));
+        return view('front.index', compact('abouts', 'prestations','demandeprestations', 'prestataires', 'domaines'));
     }
 
     /* DEMANDE DE PRESTATION */
+
     public function demande_prestation(){
         $prestations = Prestation::orderBy('id','asc')->get();
         $ethnies = Ethnie::all();
         $modes = Mode::all();
         return view('front.prestation', compact('prestations', 'ethnies', 'modes'));
+    }
+
+    public function demande_prest($id){
+        $recup_pres = Prestation::find($id);
+        $prestations = Prestation::orderBy('id','asc')->get();
+        $ethnies = Ethnie::all();
+        $modes = Mode::all();
+        return view('front.newfile_prestation', compact('prestations', 'ethnies', 'modes','recup_pres'));
     }
 
     public function send_contact(){
@@ -63,7 +77,17 @@ class FrontController extends Controller
             'date_demande' => 'nullable',
             'heure_demande'  => 'nullable',
             'observation' => 'nullable'
+        ],
+
+        [
+            'nom.required' => 'Le nom est obligatoire',
+            'prenoms.required' => 'Le prénoms est obligatoire',
+            'salaire_propose.required' => 'Le salaire est obligatoire',
+            'telephone.required' => 'Le téléphone est obligatoire',
+            'prestation_id.required' => 'La prestatoin est obligatoire',
+            'mode_id.required' => 'Le mode de travail est obligatoire'
         ]);
+
         $askprestations = new DemandePrestation();
         $askprestations->nom = $request->nom;
         $askprestations->prenoms = $request->prenoms;
@@ -104,45 +128,68 @@ class FrontController extends Controller
             'nom' => 'required',
             'prenoms' => 'required',
             'civilite' => 'required',
-            'date_naissance' => 'required',
+            'date_naiss' => 'required',
             'situation_matri' => 'required',
-            'nombre_enfant' => 'nullable',
-            'telephone1' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|max:10',
-            'telephone2' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|max:10',
-            'whatsapp' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|max:10',
-            'email' => 'required|email',
+            'nbre_enfant' => 'nullable',
+            'telephone1' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'telephone2' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'whatsapp' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'email' => 'nullable|email:unique',
             'ethnie_id' => 'required',
             'commune_id' => 'required',
-            'quartier_id' => 'required',
+            'quartier' => 'nullable',
             'photo' => 'required',
-            'domaine_id' => 'required',
+            'prestation_id' => 'required',
             'annee_experience' => 'nullable',
             'pretention_salairiale' => 'required|numeric|min:0',
-            'zone_intervention' => 'required',
-            'personne_contact' => 'required',
-            'reference' => 'required',
-            'reference_contact' => 'required',
+            'zone' => 'nullable',
+            'contact_urgence' => 'nullable',
+            'reference' => 'nullable',
+            'contact_reference' => 'nullable',
             'alphabet_id' => 'required',
             'diplome_id' => 'required',
             'mode_id' => 'required',
             'dispo_id' => 'required',
             'piece_id' => 'required',
             'numero_piece' => 'required',
-            'copie_piece' => 'required|mimes:png,jpg,jpeg,csv,txt,pdf',
+            'copy_piece' => 'nullable|mimes:png,jpg,jpeg,csv,txt,pdf',
             'canal_id' => 'nullable',
-            'date_appel' => 'required', 
-            'copie_dernier_diplome' => 'nullable|mimes:png,jpg,jpeg,csv,txt,pdf', 
-            'catalogue_realisation' => 'required',
+            'copy_last_diplome' => 'nullable|mimes:png,jpg,jpeg,csv,txt,pdf', 
+            'catalogue_realisa' => 'nullable',
             'avis' => 'nullable',
+        ],
+
+        [
+            'nom.required' => 'Le nom est obligation',
+            'prenoms.required' => 'Le prénom est obligatoire',
+            'civilite.required' => 'Votre civilité est obligatoire',
+            'date_naiss.required' => 'La date de naissance est obligatoire',
+            'situation_matri'=> 'La situation matrimoniale est obligatoire',
+            'telephone1.required' => 'Le téléphone est obligation',
+            'prestation_id.required' => 'La prestatoin est obligatoire',
+            'mode_id.required' => 'Le mode de travail est obligatoire',
+            'piece_id.required' => 'la pièce est obligation',
+            'numero_piece.required' => 'Le numéro de la pièce est obligation',
+            'pretention_salairiale' => 'le salaire est obligatoire',
+            'diplome_id'  => 'le diplome est obligatoire',
+            'dispo_id' => 'la disponilité est obligatoire',
+            'alphabet_id' => 'Veuillez choisir',
+            'personne_contact' => 'Le nom de la personne à contacter est obligation',
+            'commune_id' => 'La commune est obligatoire',
+            'ethnie_id' => 'Ce champ est obligatoire',
+            'photo' => 'la photo est obligatoire',
+            'annee_experience' => 'Expérience est obligatoire',
+            'prestation_id' => 'le domaine est obligatoire',
+
         ]);
 
         $devenirprestataires = new DevenirPrestataire();
         $devenirprestataires->nom = $request->nom;
         $devenirprestataires->prenoms = $request->prenoms;
         $devenirprestataires->civilite = $request->civilite;
-        $devenirprestataires->date_naissance = $request->date_naissance;
+        $devenirprestataires->date_naiss = $request->date_naiss;
         $devenirprestataires->situation_matri = $request->situation_matri;
-        $devenirprestataires->nombre_enfant = $request->nombre_enfant;
+        $devenirprestataires->nbre_enfant = $request->nbre_enfant;
         $devenirprestataires->telephone1 = $request->telephone1;
         $devenirprestataires->telephone2 = $request->telephone2;
         $devenirprestataires->whatsapp = $request->whatsapp;
@@ -157,23 +204,19 @@ class FrontController extends Controller
         }
         //TRAITEMENT COPIER DE LA PIECE
 
-        if ($request->hasFile('copie_piece')) {
-            $filename = $request->copie_piece;
+        if ($request->hasFile('copy_piece')) {
+            $filename = $request->copy_piece;
             //dd($filename);
             $imageName = time() . '.' . $filename->Extension();
             $filename->move(public_path("FichierCopiepiece"), $imageName);
-            $devenirprestataires->copie_piece = $imageName;
+            $devenirprestataires->copy_piece = $imageName;
         }
         //TRAITEMENT COPIE DU DERNIER DIPLOME
-        if ($request->hasFile('copie_dernier_diplome')) {
-            $filename = $request->copie_dernier_diplome;
+        if ($request->hasFile('copy_last_diplome')) {
+            $filename = $request->copy_last_diplome;
             $filepiece = time() . '.' . $filename->Extension();
             $filename->move(public_path("uploads"), $filepiece);
-            $devenirprestataires->copie_dernier_diplome = $filepiece;
-        }
-
-        if (!is_null($request->quartier_id)) {
-            $devenirprestataires->quartier_id = $request->quartier_id;
+            $devenirprestataires->copy_last_diplome = $filepiece;
         }
 
         if (!is_null($request->commune_id)) {
@@ -184,8 +227,8 @@ class FrontController extends Controller
             $devenirprestataires->ethnie_id = $request->ethnie_id;
         }
 
-        if (!is_null($request->domaine_id)) {
-            $devenirprestataires->domaine_id = $request->domaine_id;
+        if (!is_null($request->prestation_id)) {
+            $devenirprestataires->prestation_id = $request->prestation_id;
         }
 
         if (!is_null($request->alphabet_id)) {
@@ -214,13 +257,13 @@ class FrontController extends Controller
 
         $devenirprestataires->annee_experience = $request->annee_experience;
         $devenirprestataires->pretention_salairiale = $request->pretention_salairiale;
-        $devenirprestataires->zone_intervention = $request->zone_intervention;
-        $devenirprestataires->personne_contact = $request->personne_contact;
+        // $devenirprestataires->zone_intervention = $request->zone_intervention;
+        $devenirprestataires->contact_urgence = $request->contact_urgence;
         $devenirprestataires->reference = $request->reference;
-        $devenirprestataires->reference_contact = $request->reference_contact;
+        $devenirprestataires->contact_reference = $request->contact_reference;
         $devenirprestataires->numero_piece = $request->numero_piece;
-        $devenirprestataires->date_appel = $request->date_appel;
-        $devenirprestataires->catalogue_realisation = $request->catalogue_realisation;
+        $devenirprestataires->quartier = $request->quartier;
+        $devenirprestataires->catalogue_realisa = $request->catalogue_realisa;
         $devenirprestataires->avis = $request->avis;
         $devenirprestataires->save();
         return redirect()->back()->with('success', 'Félicitations!  Votre demande a été envoyé avec succès ');
@@ -243,12 +286,13 @@ class FrontController extends Controller
         $contact->objet = $request->objet;
         $contact->message = $request->message;
         $contact->save();
-        return redirect()->back()->with('success', 'Félicitations!  Votre demande a été envoyé avec succès ');
+        return redirect()->back()->with('success', 'Votre message a été envoyé avec succès, vous serez contacter plutard!');
         
     }
 
      //devenir un prestataire
      public function prestataire(){
+        $prestations = Prestation::all();
         $ethnies = Ethnie::all();
         $communes = Commune::all();
         $quartiers = Quartier::all();
@@ -260,7 +304,24 @@ class FrontController extends Controller
         $pieces = Piece::all();
         $diplomes = Diplome::all();
         return view('front.prestataire', 
-              compact('ethnies', 'pieces','communes', 'quartiers', 'domaines', 'alphabets', 'diplomes', 'dispos', 'modes', 'canals'));
+              compact('ethnies', 'pieces','communes', 'quartiers', 'prestations', 'domaines', 'alphabets', 'diplomes', 'dispos', 'modes', 'canals'));
+    }
+
+    public function demande_presta($id){
+        $prestations = Prestation::orderBy('id','asc')->get();
+        $recup_pres = Domaine::find($id);
+        $ethnies = Ethnie::all();
+        $communes = Commune::all();
+        $quartiers = Quartier::all();
+        $domaines = Domaine::all();
+        $alphabets = Alphabet::all();
+        $canals = Canal::all();
+        $modes = Mode::all();
+        $dispos = Dispo::all();
+        $pieces = Piece::all();
+        $diplomes = Diplome::all();
+        return view('front.new_file_prestataire', 
+              compact('ethnies', 'pieces','communes', 'quartiers', 'prestations', 'alphabets', 'diplomes', 'dispos', 'modes', 'canals', 'recup_pres'));
     }
 
     //all prestations
@@ -269,13 +330,58 @@ class FrontController extends Controller
         return view('front.nos-prestations', compact('prestations'));
     }
 
-    //temongnage
-    public function testimonial(){
-        return view('front.temoignage');
-    }
-
     public function help(){
         $assistances = Assistance::all();
         return view('front.assistance', compact('assistances'));
     }
+
+    
+    //temoignage
+    public function testimonial(){
+        $temoignages = Temoignage::all();
+        return view('front.temoignage', compact('temoignages'));
+    }
+    public function detail_temoignage($id){
+        $temoignage = Temoignage::find($id);
+        return view('front.detail_temoignage', compact('temoignage'));
+    }
+
+    public function temoignage_form(){
+        return view('front.form-temoignage');
+    }
+
+    public function store_temoignage(Request $request){
+        //dd($request->all());
+        $request->validate([
+            'nom' => 'required',
+            'contact' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'texte' => 'required',
+            'photo_person' => 'nullable',
+        ],
+
+        [
+            'nom.required' => 'Le nom est obligation',
+            'texte.required' => 'Le texte est obligatoire',
+        ]);
+
+        $temoignages = new Temoignage();
+        $temoignages->nom = $request->nom;
+        $temoignages->texte = $request->texte;
+
+        if (!is_null($request->contact)) {
+            $temoignages->contact = $request->contact;
+        }
+
+        if ($request->hasFile('photo_person')) {
+            $imag = $request->photo_person;
+            $imageName = time() . '.' . $imag->Extension();
+            $imag->move(public_path("TemoignagnesPhoto"), $imageName);
+            $temoignages->photo_person = $imageName;
+        }
+        $temoignages->save();
+        return redirect()->back()->with('success', 'Merci pour votre témoignage!');
+        
+    }
+
+
 }

@@ -16,4 +16,8 @@ class Prestation extends Model
     public function demandes(){
         return $this->hasMany(DemandePrestation::class, "prestation_id")->where(["deleted" => 0]);
     }
+
+    public function adhesions(){
+        return $this->hasMany(DevenirPrestataire::class, "prestation_id")->where(["deleted" => 0]);
+    }
 }

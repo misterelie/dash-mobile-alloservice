@@ -1,12 +1,14 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DomaineController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AssistanceController;
 use App\Http\Controllers\Backend\AdminController as AdminController;
-use App\Http\Controllers\DomaineController;
 use App\Http\Controllers\Interfaces\FrontController  as InterfacesFrontController ;
+use App\Http\Controllers\TemoignageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,11 +37,17 @@ require __DIR__.'/auth.php';
 //SECTION ADMINISTRATION
 
 Route::get('/', [InterfacesFrontController::class, 'index'])->name("front.index");
-Route::get('/demande-prestations', [InterfacesFrontController::class, 'demande_prestation'])->name("front.prestation");
-Route::get('/devenir-prestataire', [InterfacesFrontController::class, 'prestataire'])->name("front.prestataire");
+Route::get('/ask.prestation', [InterfacesFrontController::class, 'demande_prestation'])->name("ask.prestation");
+Route::get('/demande-prest/{id}', [InterfacesFrontController::class, 'demande_prest'])->name("front.prest");
+Route::get('/devenir-presta/{id}', [InterfacesFrontController::class, 'demande_presta'])->name("front.presta");
+Route::get('/ask.prestataire', [InterfacesFrontController::class, 'prestataire'])->name("ask.prestataire");
 Route::get('/nous-contacter', [InterfacesFrontController::class, 'send_contact'])->name("front.contact");
 route::get('/nos-prestations', [InterfacesFrontController::class, 'all_prestations'])->name("front.nos-prestations");
 route::get('/temoignages', [InterfacesFrontController::class, 'testimonial'])->name("front.temoingnage");
+route::get('/detail.temoignage/{id}', [InterfacesFrontController::class, 'detail_temoignage'])->name("detail.temoignage");
+route::get('/form.temoignage', [InterfacesFrontController::class, 'temoignage_form'])->name("form.temoignage");
+route::post('/save.temoignage', [InterfacesFrontController::class, 'store_temoignage'])->name("save.temoignage");
+
 route::get('/assistance', [InterfacesFrontController::class, 'help'])->name("front.assistance");
 
 //STORE FRONT
@@ -133,5 +141,15 @@ Route::post('/save_domaine_activity', [DomaineController::class, 'store_domaine'
 Route::put('update.domaine/{domaine}', [DomaineController::class, 'update_domaine_activity'])->name("update.domaine");
 Route::delete('delete.domaine/{id}',[DomaineController::class, 'destroy_activity_domaine'])->name("delete.domaine");
 
+//MESSAGE CONTACTS
+Route::get('/message/contact', [ContactController::class, 'message_contact'])->name("message/contact");
+Route::delete('/delete.messagecontact/{id}', [ContactController::class, 'destroy_message_contact'])->name("delete.messagecontact");
 
+//LISTE TEMOIGNAGES
+Route::get('/liste.temoignages', [TemoignageController::class, 'show_temoignage'])->name("liste.temoignages");
+Route::post('/save.temoignage', [TemoignageController::class, 'save_temoignage'])->name("save.temoignage");
+Route::get('/statut', [TemoignageController::class, 'etat'])->name("statut");
+Route::post('/save.statut', [TemoignageController::class, 'store_statut'])->name("save.statut");
+Route::put('update.temoignage/{temoignage}', [TemoignageController::class, 'update_temoignage'])->name("update.temoignage");
+Route::delete('delete.temoignage/{id}', [TemoignageController::class, 'destroy_temoignage'])->name("delete.temoignage");
 

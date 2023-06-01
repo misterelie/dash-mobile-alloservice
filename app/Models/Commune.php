@@ -11,5 +11,10 @@ class Commune extends Model
     protected $table = "communes";
     protected $guarded = ['id'];
     protected $fillable = ["commune"];
+
+    public function adhesions(){
+        return $this->hasMany(Adhesion::class, "commune_id");
+    }
+
     
 }

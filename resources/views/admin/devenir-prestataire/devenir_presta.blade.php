@@ -91,13 +91,13 @@
                                                     {{ $loop->iteration }}
                                                 </th>
                                                 <td class="photo"><img src="/PrestatairePhoto/{{ $prestataire->photo }}"
-                                                    class="img-fluid rounded-circle" width="50px" height="">
+                                                    class="img-fluid rounded-circle" width="50px" height="50">
                                                 </td>
                                                 <td class="customer_name">{{ $prestataire->nom }}</td>
                                                 <td class="email">{{ $prestataire->prenoms }}</td>
-                                                <td class="date_naissance">{{ $prestataire->date_naissance }}</td>
+                                                <td class="date_naissance">{{ $prestataire->date_naiss }}</td>
                                                 <td class="situation_matri">{{ $prestataire->situation_matri }}</td>
-                                                <td class="nbre_enfant">{{ $prestataire->nombre_enfant }}</td>
+                                                <td class="nbre_enfant">{{ $prestataire->nbre_enfant }}</td>
                                                 <td class="telephone1">{{ $prestataire->telephone1 }}</td>
                                                 <td class="telephone2">{{ $prestataire->mode->mode }}</td>
                                               
@@ -264,28 +264,28 @@
                                       <p>Email: {{ $prestataire->email }}</p>
                                       <p>Mode travail: {{  $prestataire->mode->mode }}</p>
                                       <p>Civilité: {{  $prestataire->civilite }}</p>
-                                      <p>Date naissance: {{  $prestataire->date_naissance }}</p>
+                                      <p>Date naissance: {{  $prestataire->date_naiss }}</p>
                                       <p>Situation matrimoniale: {{  $prestataire->situation_matri }}</p>
                                       <p>Téléphone1: {{  $prestataire->telephone1 }}</p>
                                       <p>Téléphone2: {{  $prestataire->telephone2 }}</p>
                                       <p>whatsapp: {{  $prestataire->whatsapp }}</p>
                                       <p>Ethnie: {{  $prestataire->ethnie->ethnie }}</p>
-                                      <p>Commune: {{  $prestataire->whatsapp }}</p>
-                                      <p>Quartier: {{  $prestataire->whatsapp }}</p>
-                                      <p>Domaine: {{  $prestataire->whatsapp }}</p>
-                                      <p>Année expérience: {{  $prestataire->whatsapp }}</p>
-                                      <p>Salaire: {{  $prestataire->whatsapp }}</p>
-                                      <p>Zone: {{  $prestataire->zone_intervention }}</p>
-                                      <p>Cas urgence: {{  $prestataire->personne_contact }}</p>
+                                      <p>Commune: {{  $prestataire->commune->commune }}</p>
+                                      <p>Quartier: {{  $prestataire->quartier }}</p>
+                                      <p>Domaine: {{  $prestataire->prestation->libelle ?? '' }}</p>
+                                      <p>Année expérience: {{ $prestataire->annee_experience }} ans</p>
+                                      <p>Salaire: {{  $prestataire->pretention_salairiale }}</p>
+                                      <p>Zone: {{ $prestataire->commune->commune }}</p>
+                                      <p>Cas urgence: {{  $prestataire->contact_urgence }}</p>
                                       <p>Référence: {{  $prestataire->reference }}</p>
-                                      <p>Contact: {{  $prestataire->reference_contact }}</p>
+                                      <p>Contact: {{  $prestataire->contact_reference }}</p>
                                       <p>Alphabétisation: {{ $prestataire->alphabet->alphabet }}</p>
                                       <p>Diplome: {{  $prestataire->diplome->diplome }}</p>
                                       <p>Disponibilité: {{  $prestataire->dispo->dispo }}</p>
                                       <p>Pièce: {{  $prestataire->piece->piece }}</p>
                                       <p>Numéro pièce: {{  $prestataire->numero_piece }}</p>
                                       <p>Canal: {{  $prestataire->canal->canal }}</p>
-                                      <p>Catalogue: {{  $prestataire->catalogue_realisation }}</p>
+                                      <p>Catalogue: {{  $prestataire->catalogue_realisa }}</p>
                                       <p>Avis: <br> {{  $prestataire->avis }}</p>
                                       
                                   </div>

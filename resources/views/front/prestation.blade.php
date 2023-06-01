@@ -53,7 +53,7 @@
                     class="form-control form-control-lg @error('nom') is-invalid @enderror" name="nom"
                 placeholder="Saisissez votre nom !"/>
                     @error('nom')
-                        <div class="alert alert-danger">Veuillez remplir ce champ</div>
+                        <span class="text-danger">{{ $message }}</span>
                     @enderror
             </div>
 
@@ -63,17 +63,17 @@
                     class="form-control form-control-lg @error('prenoms') is-invalid @enderror" name="prenoms"
                 placeholder="Saisissez votre prénom !"/>
                     @error('prenoms')
-                        <div class="alert alert-danger">Veuillez remplir ce champ</div>
+                        <span class="text-danger">{{ $message }}</span>
                     @enderror
             </div>
 
             <div class="form-outline mb-3" style="color: #1b9c1e">
-                <label class="form-label" for="form1Example2"> <span style="color: red">*</span>Téléphone :</label>
+                <label class="form-label" for="form1Example2"> <span style="color: red">*</span> Téléphone :</label>
                 <input type="text" id="form1Example2" 
                     class="form-control form-control-lg @error('telephone') is-invalid @enderror" name="telephone"
                 placeholder="Saisissez votre numéro de téléphone !"/>
                     @error('telephone')
-                        <div class="alert alert-danger">Veuillez remplir ce champ</div>
+                        <span class="text-danger">{{ $message }}</span>
                     @enderror
             </div>
 
@@ -90,18 +90,18 @@
                 <select name="prestation_id" class="form-select form-select-lg mb-3 form-control 
                 @error('prestation_id') is-invalid @enderror">
                 <option value="">-- Sélectionnez une option --- </option>
-                    @if (!is_null($prestations))
-                        @foreach ($prestations as $prestation)
-                            <option value="{{ $prestation->id }}"
-                                {{ !is_null(old('prestation_id')) ? 'selected' : '' }}>
-                                {{ Str::ucfirst($prestation->libelle) }}
-                            </option>
-                        @endforeach
-                    @endif
+                @if (!is_null($prestations))
+                    @foreach ($prestations as $prestation)
+                        <option value="{{ $prestation->id }}"
+                            {{ !is_null(old('prestation_id')) ? 'selected' : '' }}>
+                            {{ Str::ucfirst($prestation->libelle) }}
+                        </option>
+                    @endforeach
+                @endif
                 </select>
 
                 @error('prestation_id')
-                    <div class="alert alert-danger">Ce champ est obigatoire</div>
+                    <span class="text-danger">{{ $message }}</span>
                 @enderror
             </div>
           
@@ -119,7 +119,7 @@
                     @endif
                 </select>
                 @error('mode_id')
-                <div class="alert alert-danger">Ce champ est obligatoire</div>
+                <span class="text-danger">{{ $message }}</span>
             @enderror
             </div>
     
@@ -129,7 +129,7 @@
                     class="form-control form-control-lg @error('salaire_propose') is-invalid @enderror" name="salaire_propose"
                 placeholder="Proposez un salaire en FCFA !"/>
                     @error('salaire_propose')
-                        <div class="alert alert-danger">Veuillez remplir ce champ</div>
+                        <span class="text-danger">{{ $message }}</span>
                     @enderror
             </div>
     

@@ -13,6 +13,7 @@ use App\Models\Domaine;
 use App\Models\Alphabet;
 use App\Models\Quartier;
 use App\Models\Prestation;
+use App\Models\Temoignage;
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\Cast;
 use App\Models\DemandePrestation;
@@ -24,7 +25,12 @@ class AdminController extends Controller
     //
 
     public function dasboard(){
-        return view('admin.dashboard');
+        // $services = Service::count();
+        $prestations = Prestation::count();
+        $prestataires = DevenirPrestataire::count();
+        $demandeprestations = DemandePrestation::count();
+        $temoignages = Temoignage::count();
+        return view('admin.dashboard', compact('prestations', 'demandeprestations', 'prestataires', 'temoignages'));
     }
 
     //AJOUT 
@@ -469,14 +475,5 @@ class AdminController extends Controller
                                         }
                                         return abort(500);
                                     }
-
-
-
-
-            
-
-
-
-
 
 }

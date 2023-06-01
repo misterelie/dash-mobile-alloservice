@@ -23,13 +23,24 @@ button:hover {
 </style>
 
 <section class="category-section top-category pt-10 pb-10 appear-animate fadeIn appear-animation-visible">
-    <div class="titre-temoignage" style="background: #3800bf">
+    {{-- <div class="titre-temoignage" style="background: #3800bf">
         <div class="p-4 shadow-4 w">
             <p class="text-center pt-5 text-uppercase" style="color: #fff; font-size: 20px">
+                <a href="{{route('front.index')}}"><i class="fa fa-arrow-left" style="color: #ffff; margin: 15px"></i></a>  
                 Toutes nos prestations
             </p>
         </div>
-    </div>
+    </div> --}}
+
+    <section style="background: #3800bf;">
+        <div class="pt-4">
+            <div class="shadow-4 w">
+                <p class="text-center pt-3" style="color: #fff; font-size: 20px">
+                    <a href="{{route('front.index')}}"><i class="fa fa-arrow-left" aria-hidden="true" style="color: #ffff; margin: 15px;"></i></a> NOS PRESTATIONS
+                </p>
+            </div>
+        </div>
+    </section>
     <div class="container m-auto mx-auto mb-5">
         <div class="shop-default shop-cards shop-tech"><br><br>
             <div class="row">
@@ -55,7 +66,7 @@ button:hover {
                                     </h3>
                                 </div>
                                 <div class="col-lg-12">
-                                    <a href="{{ route('front.prestation') }}">
+                                    <a href="{{ route('front.prest',$prestation->id) }}">
                                         <button type="button" id="prevBtn">Demander la prestation 
                                             <img src="{{ asset('assets/images/point.png') }}" 
                                             width="" class="img-fluid" alt=""> Cliquez ici
@@ -63,7 +74,7 @@ button:hover {
                                     </a>
                                 </div>
                                 <div class="col-lg-12">
-                                    <a href="{{ route('front.prestation') }}">
+                                    <a href="{{ route('front.presta',$prestation->id) }}">
                                         <button type="button" id="prevBtn" style="color: #1b9c1e; background-color: #e6e7e8">
                                             Devenir un prestataire<br>
                                             <img src="{{ asset('assets/images/point_blue.png') }}" 

@@ -703,7 +703,7 @@
             <li class="nav-item">
                 <a class="nav-link menu-link" href="#sidebarLanding" data-bs-toggle="collapse" role="button"
                     aria-expanded="false" aria-controls="sidebarLanding">
-                    <i class="mdi mdi-help-circle-outline"></i> <span data-key="t-landing">Assistance</span>
+                    <i class="mdi mdi-help-circle-outline"></i> <span data-key="t-landing">Assistances</span>
                 </a>
                 <div class="collapse menu-dropdown" id="sidebarLanding">
                     <ul class="nav nav-sm flex-column">
@@ -715,26 +715,36 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link menu-link" href="#sidebarLanding" data-bs-toggle="collapse" role="button"
-                    aria-expanded="false" aria-controls="sidebarLanding">
-                    <i class="ri-phone-line"></i> <span data-key="t-landing">Contacts</span>
+                <a class="nav-link menu-link" href="#sidebarAdvanceUI" data-bs-toggle="collapse"
+                    role="button" aria-expanded="false" aria-controls="sidebarAdvanceUI">
+                    <i class="mdi mdi-bullhorn-variant-outline"></i> <span data-key="t-advance-ui">Témoignages
+                    </span>
                 </a>
-                {{-- <div class="collapse menu-dropdown" id="sidebarLanding">
+                <div class="collapse menu-dropdown" id="sidebarAdvanceUI">
                     <ul class="nav nav-sm flex-column">
                         <li class="nav-item">
-                            <a href="landing.html" class="nav-link" data-key="t-one-page"> One Page </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="nft-landing.html" class="nav-link" data-key="t-nft-landing"> NFT
-                                Landing </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="job-landing.html" class="nav-link"><span data-key="t-job">Job</span>
-                                <span class="badge badge-pill bg-success" data-key="t-new">New</span></a>
+                            <a href="{{ route('liste.temoignages')}}" class="nav-link"
+                                data-key="t-sweet-alerts">Consulter</a>
                         </li>
                     </ul>
-                </div> --}}
-            </li>
+                </div>
+            </li> 
+
+            <li class="nav-item">
+                <a class="nav-link menu-link" href="#sidebarAdvanceUI" data-bs-toggle="collapse"
+                    role="button" aria-expanded="false" aria-controls="sidebarAdvanceUI">
+                    <i class="ri-phone-line"></i> <span data-key="t-advance-ui">Contacts
+                    </span>
+                </a>
+                <div class="collapse menu-dropdown" id="sidebarAdvanceUI">
+                    <ul class="nav nav-sm flex-column">
+                        <li class="nav-item">
+                            <a href="{{ url('message/contact')}}" class="nav-link"
+                                data-key="t-sweet-alerts">Consulter les messages</a>
+                        </li>
+                    </ul>
+                </div>
+            </li> 
 
             <li class="menu-title"><i class="ri-more-fill"></i> <span
                     data-key="t-components">Autres</span></li>
@@ -788,6 +798,10 @@
 
                                 <li class="nav-item">
                                     <a href="{{ route('activity.domaine') }}" class="nav-link" data-key="t-cards">Domaines activité</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="{{ route('statut') }}" class="nav-link" data-key="t-cards">Statuts</a>
                                 </li>
                                 {{-- <li class="nav-item">
                                     <a href="ui-colors.html" class="nav-link" data-key="t-colors">Colors</a>
@@ -876,52 +890,6 @@
                 </div>
             </li>
 
-            {{-- <li class="nav-item">
-                <a class="nav-link menu-link" href="#sidebarAdvanceUI" data-bs-toggle="collapse"
-                    role="button" aria-expanded="false" aria-controls="sidebarAdvanceUI">
-                    <i class="mdi mdi-layers-triple-outline"></i> <span data-key="t-advance-ui">Advance
-                        UI</span>
-                </a>
-                <div class="collapse menu-dropdown" id="sidebarAdvanceUI">
-                    <ul class="nav nav-sm flex-column">
-                        <li class="nav-item">
-                            <a href="advance-ui-sweetalerts.html" class="nav-link"
-                                data-key="t-sweet-alerts">Sweet Alerts</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="advance-ui-nestable.html" class="nav-link"
-                                data-key="t-nestable-list">Nestable List</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="advance-ui-scrollbar.html" class="nav-link"
-                                data-key="t-scrollbar">Scrollbar</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="advance-ui-animation.html" class="nav-link"
-                                data-key="t-animation">Animation</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="advance-ui-tour.html" class="nav-link" data-key="t-tour">Tour</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="advance-ui-swiper.html" class="nav-link"
-                                data-key="t-swiper-slider">Swiper Slider</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="advance-ui-ratings.html" class="nav-link"
-                                data-key="t-ratings">Ratings</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="advance-ui-highlight.html" class="nav-link"
-                                data-key="t-highlight">Highlight</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="advance-ui-scrollspy.html" class="nav-link"
-                                data-key="t-scrollSpy">ScrollSpy</a>
-                        </li>
-                    </ul>
-                </div>
-            </li> --}}
 
             {{-- <li class="nav-item">
                 <a class="nav-link menu-link" href="widgets.html">

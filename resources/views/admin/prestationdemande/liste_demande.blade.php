@@ -93,10 +93,10 @@
                                                 <td class="customer_prenoms">{{ $demandeprestation->prenoms }}</td>
                                                 <td class="phone">{{ $demandeprestation->telephone }}</td>
                                                 <td class="age">{{ $demandeprestation->email }}</td>
-                                                <td class="date">{{ $demandeprestation->ethnie->ethnie }}</td>
+                                                <td class="date">{{ $demandeprestation->ethnie->ethnie ?? '' }}</td>
                                                 <td class="date">{{ $demandeprestation->prestation->libelle ?? '' }}</td>
                                                 <td class="date">{{ $demandeprestation->salaire_propose }} FCFA</td>
-                                                <td class="date">{{ $demandeprestation->mode->mode }}</td>
+                                                <td class="date">{{ $demandeprestation->mode->mode ?? '' }}</td>
                                                 <td>
                                                     <div class="d-flex gap-2">
                                                         <div class="edit">
@@ -368,11 +368,11 @@
                                       <p class="">Prénoms: {{ $demandeprestation->prenoms }}</p>
                                       <p>Téléphone: {{ $demandeprestation->telephone }}</p>
                                       <p>Email: {{ $demandeprestation->email }}</p>
-                                      <p>Mode travail: {{  $demandeprestation->mode->mode }}</p>
+                                      <p>Mode travail: {{  $demandeprestation->mode->mode ?? '' }}</p>
                                       <p>Prestation: {{  $demandeprestation->prestation->libelle ?? ''}}</p>
                                       <p>salaire: {{  $demandeprestation->salaire_propose}}</p>
                                       <p>Age: {{ $demandeprestation->age_demande }} ans</p>
-                                      <p>Ethnie: {{  $demandeprestation->ethnie->ethnie }}</p>
+                                      <p>Ethnie: {{  $demandeprestation->ethnie->ethnie ?? ''}}</p>
                                       <p>Date de demande: {{  $demandeprestation->date_demande }}</p>
                                       <p>Heure de la demande: {{  $demandeprestation->heure_demande }}</p>
                                       <p>Observation: <br> {{  $demandeprestation->observation }}</p>

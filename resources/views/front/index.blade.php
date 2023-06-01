@@ -63,15 +63,15 @@
                             </li>
 
                             <li class="nav-item">
-                                <a href="{{ route('front.prestation') }}"
+                                <a href="{{ route('ask.prestation') }}"
                                     class="nav-link text-truncate">
-                                    <i class="fa  fa-tasks"></i><span class="ms-1 d-sm-inline">Demande de
-                                        prestations</span>
+                                    <i class="fa  fa-tasks"></i><span class="ms-1 d-sm-inline">
+                                        Demande de prestations</span>
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a href="{{ route('front.prestataire') }}"
+                                <a href="{{ route('ask.prestataire') }}"
                                     class="nav-link text-truncate">
                                     <i class="fa fa-users"></i><span class="ms-1 d-sm-inline">Devenir prestataire</span>
                                 </a>
@@ -131,13 +131,12 @@
             </div>
         </section>
 
-        <section
-            class="category-section top-category bg-gray pt-10 pb-10 appear-animate fadeIn appear-animation-visible">
+        <section class="category-section top-category bg-gray pt-10 pb-10 appear-animate fadeIn appear-animation-visible">
             <div class="container m-auto mx-auto">
                 <div class="commune-annonce">
                     <div class="card commune-card">
                         <div class="card-body card-bouton">
-                            <a href="{{ route('front.prestation') }}">
+                            <a href="{{ route('ask.prestation') }}">
                                 <h5 class="titre-prestation" style="font-size: 16px">Demander une prestation</h5>
                             </a>
                         </div>
@@ -146,7 +145,7 @@
                 <div class="commune-annonce">
                     <div class="card commune-card">
                         <div class="card-body card-bouton">
-                            <a href="{{ route('front.prestataire') }}">
+                            <a href="{{ route('ask.prestataire') }}">
                                 <h5 class="titre-prestation" style="font-size: 16px">Devenir un prestataire</h4>
                             </a>
                         </div>
@@ -165,7 +164,7 @@
                         <div class="card category-card">
                             <a href="">
                                 <div class="category-image position-relative carre-card">
-                                    <h4 class="text-center"><span>+1500</span></h4>
+                                    <h4 class="text-center"><span>+{{$demandeprestations}}</span></h4>
                                     <p class="category-name text-center">
                                         Demandes<br>enregistrées
                                     </p>
@@ -178,7 +177,7 @@
                         <div class="card category-card-card-client">
                             <a href="">
                                 <div class="category-image position-relative carre-card">
-                                    <h4 class="text-center"><span>+1000</span></h4>
+                                    <h4 class="text-center"><span>+10</span></h4>
                                     <p class="category-name text-center">
                                         Clients<br>satisfaits
                                     </p>
@@ -190,7 +189,7 @@
                         <div class="card category-card">
                             <a href="">
                                 <div class="category-image position-relative carre-card">
-                                    <h4 class="text-center"><span>+200</span></h4>
+                                    <h4 class="text-center"><span>+{{$prestataires}}</span></h4>
                                     <p class="category-name text-center">
                                         Prestataires<br>disponibles
                                     </p>
@@ -231,7 +230,7 @@
                                             </h3>
                                         </div>
                                         <div class="col-lg-12">
-                                            <a href="{{ route('front.prestation') }}">
+                                            <a href="{{ route('front.prest',$prestation->id) }}">
                                                 <button type="button" id="prevBtn">Demander la prestation 
                                                     <img src="{{ asset('assets/images/point.png') }}" 
                                                     width="" class="img-fluid" alt=""> Cliquez ici
@@ -239,7 +238,7 @@
                                             </a>
                                         </div>
                                         <div class="col-lg-12">
-                                            <a href="{{ route('front.prestation') }}">
+                                            <a href="{{ route('front.presta',$prestation->id) }}">
                                                 <button type="button" id="prevBtn" style="color: #1b9c1e; background-color: #e6e7e8">
                                                     Devenir un prestataire<br>
                                                     <img src="{{ asset('assets/images/point_blue.png') }}" 
@@ -254,7 +253,6 @@
                         @endforeach
                         @endif
                     </div>
-
                    
                     <main class="px-3">
                         <p class="text-center">
@@ -266,7 +264,6 @@
             </div>
         </section> 
 
-      
         <section id="section-content">
             @include('front.about')
         </section><br><br><br>
@@ -303,7 +300,6 @@
                 </ul>
             </nav>
         </section>
-
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
         integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous">
     </script>

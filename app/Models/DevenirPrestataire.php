@@ -12,39 +12,38 @@ class DevenirPrestataire extends Model
     protected $guarded = ['id'];
     protected $fillable = 
     [
-        "nom", 
-        "prenoms", 
-        "civilite", 
-        "date_naissance", 
-        "situation_matri",
-        "nombre_enfant", 
-        "telephone1",
-        "telephone2",
-        "whatsapp",
-        "email",
-        "ethnie_id",
-        "commune_id",
-        "quartier_id",
-        "photo",
-        "domaine_id",
-        "annee_experience",
-        "pretention_salairiale",
-        "zone_intervention",
-        "personne_contact",
-        "reference", 
-        'reference_contact',
-        "alphabet_id",
-        "diplome_id",
-        "mode_id",
-        "dispo_id",
-        "piece_id",
-        "numero_piece",
-        "canal_id",
-        "date_appel", 
-        "copie_piece",
-        "copie_dernier_diplome",
-        "catalogue_realisation",
-        "avis"
+        'nom',
+        'prenoms',
+        'civilite',
+        'date_naiss',
+        'situation_matri',
+        'nbre_enfant',
+        'telephone1',
+        'telephone2',
+        'whatsapp',
+        'email',
+        'ethnie_id',
+        'commune_id',
+        'quartier',
+        'photo',
+        'prestation_id',
+        'annee_experience',
+        'pretention_salairiale',
+        'zone' => 'nullable',
+        'contact_urgence',
+        'reference',
+        'contact_reference',
+        'alphabet_id',
+        'diplome_id',
+        'mode_id',
+        'dispo_id',
+        'piece_id',
+        'numero_piece',
+        'copy_piece',
+        'canal_id',
+        'copy_last_diplome', 
+        'catalogue_realisa' ,
+        'avis'
     ];
 
     //* Mode
@@ -80,5 +79,15 @@ class DevenirPrestataire extends Model
     public function canal(){
         return $this->belongsTo(Canal::class, "canal_id");
     }
+
+    //* Commune
+    public function commune(){
+        return $this->belongsTo(Commune::class, "commune_id");
+    }
+
+    public function prestation(){
+        return $this->belongsTo(Prestation::class, "prestation_id");
+    }
+
 
 }

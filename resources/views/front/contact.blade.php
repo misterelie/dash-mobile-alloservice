@@ -42,7 +42,7 @@
              </div>
 
              <div class="form-outline mb-3" style="color: #1b9c1e">
-                <label class="form-label" for="form1Example2"><span style="color: red">*</span> Prénoms:</label>
+                <label class="form-label" for="form1Example2"><span style="color: red">*</span> Prénoms :</label>
                 <input type="text" id="form1Example2" class="form-control form-control-lg" name="prenoms" placeholder="Entrer votre prenoms svp !" required/>
              </div>
     

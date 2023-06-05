@@ -169,7 +169,7 @@
                         </p>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 form-group mt-md-0" style="color: #1b9c1e">
+                <div class="col-lg-4 col-md-6 form-group mt-md-0" style="color: #1b9c1e">
                         <label for=""><span style="color: red">*</span> Prénoms : </label>
                         <p><input type="text" id="form1Example2" 
                             class="form-control form-control-lg @error('prenoms') is-invalid @enderror" name="prenoms" 
@@ -398,7 +398,6 @@
                 </select>
             </div>
            
-
             <div class="col-lg-4 col-md-6 form-group mt-md-0" style="color: #1b9c1e">
                 <label for="">Personne à contacter :
                 <p><input type="text"

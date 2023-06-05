@@ -91,7 +91,7 @@
                                                     {{ $loop->iteration }}
                                                 </th>
                                                 <td class="photo"><img src="/PrestatairePhoto/{{ $prestataire->photo }}"
-                                                    class="img-fluid rounded-circle" width="50px" height="50">
+                                                    class="img-fluid rounded-circle" width="45px">
                                                 </td>
                                                 <td class="customer_name">{{ $prestataire->nom }}</td>
                                                 <td class="email">{{ $prestataire->prenoms }}</td>
@@ -104,21 +104,21 @@
                                                 
                                                 <td>
                                                     <div class="d-flex gap-2">
-                                                        <div class="edit">
+                                                        {{-- <div class="edit">
                                                             <button class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#editModal_">Modifier</button>
-                                                        </div>
+                                                        </div> --}}
 
                                                         <div class="detail">
                                                             <button class="btn btn-sm btn-primary edit-item-btn" data-bs-toggle="modal" data-bs-target="#detailModal_{{ $prestataire->id }}">Détail</button>
                                                         </div>
-                                                       <form id="" 
+                                                       {{-- <form id="" 
                                                         action="" 
                                                         method="POST" enctype="multipart/form-data">
                                                         @csrf
                                                         @method('DELETE')
 
                                                         <button class="btn btn-sm btn-danger remove-item-btn" data-bs-toggle="modal" data-bs-target="#deleteModal_">Delete</button>
-                                                       </form>
+                                                       </form> --}}
                                                     </div>
                                                 </td>
                                             </tr>

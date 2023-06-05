@@ -74,7 +74,6 @@
                                                 <th class="sort" data-sort="customer_name">Noms</th>
                                                 <th class="sort" data-sort="customer_name">Prénoms</th>
                                                 <th class="sort" data-sort="customer_name">Téléphones</th>
-                                                <th class="sort" data-sort="customer_name">Emails</th>
                                                 <th class="sort" data-sort="customer_prestataire">Ethnies</th>
                                                 <th class="sort" data-sort="customer_presta">Prestations</th>
                                                 <th class="sort" data-sort="customer_salaire">Salaires</th>
@@ -92,7 +91,6 @@
                                                 <td class="customer_name">{{ $demandeprestation->nom }}</td>
                                                 <td class="customer_prenoms">{{ $demandeprestation->prenoms }}</td>
                                                 <td class="phone">{{ $demandeprestation->telephone }}</td>
-                                                <td class="age">{{ $demandeprestation->email }}</td>
                                                 <td class="date">{{ $demandeprestation->ethnie->ethnie ?? '' }}</td>
                                                 <td class="date">{{ $demandeprestation->prestation->libelle ?? '' }}</td>
                                                 <td class="date">{{ $demandeprestation->salaire_propose }} FCFA</td>
@@ -253,10 +251,12 @@
 
                                 <div class="mb-3">
                                     <label for="customername-field" class="form-label">Mode de travail</label>
-                                    <select class="form-select mb-3" name="mode_id" id="mode_id" aria-label="Default select example">
+                                    <select class="form-select mb-3" name="mode_id" id="mode_id">
+                                        <option value="">--Sélectionner</option>
                                         @if(!is_null($modes))
                                             @foreach($modes as $mode)
-                                              <option value="{{ $mode->id }}" @if($demandeprestation->mode == $mode) selected @endif>
+                                              <option value="{{ $mode->id }}" 
+                                                 @if((int) $demandeprestation->mode_id == (int)$mode->id) selected @endif>
                                                 {{ $mode->mode }}
                                               </option>
                                             @endforeach
@@ -266,10 +266,12 @@
 
                                 <div class="mb-3">
                                     <label for="customername-field" class="form-label">Prestation</label>
-                                    <select class="form-select mb-3" name="mode_id" id="mode_id" aria-label="Default select example">
+                                    <select class="form-select mb-3" name="prestation_id" id="prestation_id" aria-label="Default select example">
+
                                         @if(!is_null($prestations))
                                             @foreach($prestations as $prestation)
-                                              <option value="{{ $prestation->id }}" @if($demandeprestation->prestation == $prestation) selected @endif>
+                                              <option value="{{ $prestation->id }}" 
+                                                 @if((int) $demandeprestation->prestation_id == (int)$prestation->id) selected @endif>
                                                 {{ $prestation->libelle }}
                                               </option>
                                             @endforeach
@@ -282,7 +284,8 @@
                                     <select class="form-select mb-3" name="ethnie_id" id="ethnie_id" aria-label="Default select example">
                                         @if(!is_null($ethnies))
                                             @foreach($ethnies as $ethnie)
-                                              <option value="{{ $ethnie->id }}" @if($demandeprestation->ethnie == $ethnie) selected @endif>
+                                              <option value="{{ $ethnie->id }}" 
+                                                 @if((int) $demandeprestation->ethnie_id == (int)$ethnie->id) selected @endif>
                                                 {{ $ethnie->ethnie }}
                                               </option>
                                             @endforeach

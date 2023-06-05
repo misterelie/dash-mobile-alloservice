@@ -6,7 +6,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DomaineController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AssistanceController;
-use App\Http\Controllers\Backend\AdminController as AdminController;
+use App\Http\Controllers\Backend\AdminController as BackendAdminController;
 use App\Http\Controllers\Interfaces\FrontController  as InterfacesFrontController ;
 use App\Http\Controllers\TemoignageController;
 
@@ -23,7 +23,8 @@ use App\Http\Controllers\TemoignageController;
 
 
 
-Route::get('/administration', [AdminController::class, 'dasboard'])->middleware(['auth', 'verified'])->name('admin.dashboard');
+Route::get('/administration', [BackendAdminController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('administration');
+// Route::get('/administration', [AdminController::class, 'dashboard'])->middleware(['auth', 'verified']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

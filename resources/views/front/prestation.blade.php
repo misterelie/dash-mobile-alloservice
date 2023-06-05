@@ -120,7 +120,7 @@
                 </select>
                 @error('mode_id')
                 <span class="text-danger">{{ $message }}</span>
-            @enderror
+               @enderror
             </div>
     
             <div class="form-outline mb-3" style="color: #1b9c1e">
@@ -167,9 +167,7 @@
                 <input type="time" id="form1Example2" 
                     class="form-control form-control-lg" name="heure_demande"
                 placeholder="Saisissez  l'heure !"/>
-                  
             </div>
-          
             <!-- Message input -->
             <div class="form-outline mb-3" style="color: #1b9c1e">
                 <label class="form-label" for="form4Example3">Voulez-vous précicez quelques choses ?</label>

@@ -1,4 +1,5 @@
-
+@extends('layouts.master')
+@section('content')
 @if(!is_null($abouts))
 @foreach($abouts as $about)
     <section id="section-content">
@@ -26,3 +27,4 @@
     </section>
 @endforeach
 @endif
+@endsection

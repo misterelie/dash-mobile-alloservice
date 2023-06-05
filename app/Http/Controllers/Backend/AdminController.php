@@ -23,8 +23,11 @@ use App\Http\Controllers\Controller;
 class AdminController extends Controller
 {
     //
+    public function __construct(){
+        $this->middleware('auth');
+      }
 
-    public function dasboard(){
+    public function dashboard(){
         // $services = Service::count();
         $prestations = Prestation::count();
         $prestataires = DevenirPrestataire::count();
@@ -206,50 +209,44 @@ class AdminController extends Controller
                         'prenoms' => 'required',
                         'telephone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|max:10',
                         'prestation_id' => 'nullable',
-                        'mode_id' => 'required',
+                        'mode_id' => 'nullable',
                         'salaire_propose' => 'required|numeric|min:0',
                         'ethnie_id' => 'nullable',
                         'age_demande' => 'required'
                     ]);
+                    
+                        if (!is_null($request->nom)) {
+                            $demandeprestation->nom = $request->nom;
+                        }
+                        
+                        if (!is_null($request->prenoms)) {
+                            $demandeprestation->prenoms = $request->prenoms;
+                        }
 
-                    if(!is_null($request->nom)){
-                        $demandeprestation->nom = $request->nom;
-                    }
+                        if (!is_null($request->telephone)) {
+                            $demandeprestation->telephone = $request->telephone;
+                        }
+                        if (!is_null($request->prestation_id)) {
+                            $demandeprestation->prestation_id = $request->prestation_id;
+                        }
+                        if (!is_null($request->mode_id)) {
+                            $demandeprestation->mode_id = $request->mode_id;
+                        }
+                        if (!is_null($request->ethnie_id)) {
+                            $demandeprestation->ethnie_id = $request->ethnie_id;
+                        }
 
-                    if (!is_null($request->prenoms)) {
-                        $demandeprestation->prenoms = $request->prenoms;
-                    }
+                        if (!is_null($request->salaire_propose)) {
+                            $demandeprestation->salaire_propose = intval($request->salaire_propose);
+                        }
 
-                    if (!is_null($request->telephone)) {
-                        $demandeprestation->telephone = $request->telephone;
-                    }
-
-                    if (!is_null($request->prestation_id)) {
-                        $demandeprestation->prestation_id = $request->prestation_id;
-                    }
-
-                    if (!is_null($request->mode_id)) {
-                        $demandeprestation->mode_id = $request->mode_id;
-                    }
-
-                    if (!is_null($request->salaire_propose)) {
-                        $demandeprestation->salaire_propose = intval($request->salaire_propose);
-                    }
-
-                    if (!is_null($request->age_demande)) {
-                        $demandeprestation->age_demande = $request->age_demande;
-                    }
-                    if (!is_null($request->ethnie_id)) {
-                        $demandeprestation->ethnie_id = $request->ethnie_id;
-                    }
-
-                    if (!is_null($request->age_demande)) {
-                        $demandeprestation->age_demande = $request->age_demande;
-                    }
-
-                    $demandeprestation->update();
-                    return redirect()->back()->with('success', 'Félicitations!  Votre mise  a été effectué avec succès ');
+                        if (!is_null($request->age_demande)) {
+                            $demandeprestation->age_demande = $request->age_demande;
+                        }
+                        $demandeprestation->update();
+                        return redirect()->back()->with('success', 'Félicitations!  Votre mise  a été effectué avec succès ');
                 }
+
 
                 public function deletedemande($id){
                     $demandeprestation = DemandePrestation::find($id);

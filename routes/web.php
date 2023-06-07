@@ -24,7 +24,6 @@ use App\Http\Controllers\TemoignageController;
 
 
 Route::get('/administration', [BackendAdminController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('administration');
-// Route::get('/administration', [AdminController::class, 'dashboard'])->middleware(['auth', 'verified']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -57,72 +56,75 @@ Route::post('/save.devenirprestataire', [InterfacesFrontController::class, 'stor
 Route::post('/save_contact', [InterfacesFrontController::class, 'store_contact'])->name("save_contact");
 
 //NOS PRESTATIONS
-Route::get('/liste/prestation', [AdminController::class, 'liste_prestation'])->name("liste-prestation");
-Route::post('/save.prestation', [AdminController::class, 'save_prestation'])->name("save.prestation");
-Route::put('/prestation.upate/{prestation}', [AdminController::class, 'update'])->name("prestation.upate");
-Route::delete('/delete.prestation/{demandeprestation}', [AdminController::class, 'delete'])->name("delete.prestation");
+Route::get('/liste/prestation', [BackendAdminController::class, 'liste_prestation'])->name("liste-prestation");
+Route::post('/save.prestation', [BackendAdminController::class, 'save_prestation'])->name("save.prestation");
+Route::put('/prestation.upate/{prestation}', [BackendAdminController::class, 'update'])->name("prestation.upate");
+Route::delete('/delete.prestation/{demandeprestation}', [BackendAdminController::class, 'delete'])->name("delete.prestation");
 
 //LISTE DES DEMANDES DE PRESTATIONS
-Route::get('/liste/demande_prestation', [AdminController::class, 'liste_demande_prestation'])->name("liste/demande_prestation");
-Route::put('/update.demande/{demandeprestation}', [AdminController::class, 'update_demande'])->name("update.demande");
-Route::delete('/delete.demande/{id}', [AdminController::class, 'deletedemande'])->name("delete.demande");
+Route::get('/liste/demande_prestation', [BackendAdminController::class, 'liste_demande_prestation'])->name("liste/demande_prestation");
+Route::put('/update.demande/{demandeprestation}', [BackendAdminController::class, 'update_demande'])->name("update.demande");
+Route::delete('/delete.demande/{id}', [BackendAdminController::class, 'deletedemande'])->name("delete.demande");
 
 //LISTE DES PRESTATAIRES
-Route::get('/liste/devenirprestataire', [AdminController::class, 'list_prestataire'])->name("liste/devenirprestataire");
+Route::get('/liste/devenirprestataire', [BackendAdminController::class, 'list_prestataire'])->name("liste/devenirprestataire");
+Route::put('/update.prestataire/{prestataire}', [BackendAdminController::class, 'update_prestataire'])->name("update.prestataire");
+Route::delete('/delete.prestataire/{id}', [BackendAdminController::class, 'delete_prestataire'])->name("delete.prestataire");
+
 
 //AJOUT ETHNIES
-Route::get('/liste.ethnie', [AdminController::class, 'liste_ethnie'])->name("liste.ethnie");
-Route::post('/save_ethnie', [AdminController::class, 'enregis_ethnie'])->name("save_ethnie");
-Route::put('/ethnie.update/{ethnie}', [AdminController::class, 'update_ethnie'])->name("ethnie.update");
-Route::delete('/delete.ethnie/{ethnie}', [AdminController::class, 'delete_ethnie'])->name("delete.ethnie");
+Route::get('/liste.ethnie', [BackendAdminController::class, 'liste_ethnie'])->name("liste.ethnie");
+Route::post('/save_ethnie', [BackendAdminController::class, 'enregis_ethnie'])->name("save_ethnie");
+Route::put('/ethnie.update/{ethnie}', [BackendAdminController::class, 'update_ethnie'])->name("ethnie.update");
+Route::delete('/delete.ethnie/{ethnie}', [BackendAdminController::class, 'delete_ethnie'])->name("delete.ethnie");
 
 //AJOUT MODES
-Route::get('/liste.modes', [AdminController::class, 'liste_mode'])->name("liste.modes");
-Route::post('/store.mode', [AdminController::class, 'enregis_mode'])->name("store.mode");
-Route::put('/update.mode/{mode}', [AdminController::class, 'update_mode'])->name("update.mode");
-Route::delete('/delete.mode/{id}', [AdminController::class, 'delete_mode'])->name("delete.mode");
+Route::get('/liste.modes', [BackendAdminController::class, 'liste_mode'])->name("liste.modes");
+Route::post('/store.mode', [BackendAdminController::class, 'enregis_mode'])->name("store.mode");
+Route::put('/update.mode/{mode}', [BackendAdminController::class, 'update_mode'])->name("update.mode");
+Route::delete('/delete.mode/{id}', [BackendAdminController::class, 'delete_mode'])->name("delete.mode");
 
 //AJOUT DIPLOMES
-Route::get('/ajout/diplome', [AdminController::class, 'liste_diplome'])->name("ajout/diplome");
-Route::post('/save/diplome', [AdminController::class, 'enregis_diplome'])->name("save/diplome");
-Route::put('/update.diplome/{diplome}', [AdminController::class, 'update_diplome'])->name("update.diplome");
-Route::delete('/delete.diplome/{diplome}', [AdminController::class, 'delete_diplome'])->name("delete.diplome");
+Route::get('/ajout/diplome', [BackendAdminController::class, 'liste_diplome'])->name("ajout/diplome");
+Route::post('/save/diplome', [BackendAdminController::class, 'enregis_diplome'])->name("save/diplome");
+Route::put('/update.diplome/{diplome}', [BackendAdminController::class, 'update_diplome'])->name("update.diplome");
+Route::delete('/delete.diplome/{diplome}', [BackendAdminController::class, 'delete_diplome'])->name("delete.diplome");
 
 //AJOUT ALPHABETISATION
-Route::get('/ajout/alphabetisation', [AdminController::class, 'add_alphabet'])->name("ajout/alphabetisation");
-Route::post('/save.alphabet', [AdminController::class, 'enregistre_alphabet'])->name("save.alphabet");
-Route::put('/update.alpha/{alphabet}', [AdminController::class, 'update_alphabet'])->name("update.alpha");
-Route::delete('/delete.alpha/{alphabet}', [AdminController::class, 'delete_alphabet'])->name("delete.alpha");
+Route::get('/ajout/alphabetisation', [BackendAdminController::class, 'add_alphabet'])->name("ajout/alphabetisation");
+Route::post('/save.alphabet', [BackendAdminController::class, 'enregistre_alphabet'])->name("save.alphabet");
+Route::put('/update.alpha/{alphabet}', [BackendAdminController::class, 'update_alphabet'])->name("update.alpha");
+Route::delete('/delete.alpha/{alphabet}', [BackendAdminController::class, 'delete_alphabet'])->name("delete.alpha");
 
 //AJOUT CANAL DE RENCONTRE AVEC ALLO SERVICE
-Route::get('/ajout.rencontre', [AdminController::class, 'ajout_canal_rencontre'])->name("ajout.rencontre");
-Route::post('/store.canal', [AdminController::class, 'save_canal_rencontre'])->name("store.canal");
-Route::put('/update.canal/{canal}', [AdminController::class, 'updatecanal'])->name("update.canal");
-Route::delete('/delete.canal/{id}', [AdminController::class, 'delete_canal'])->name("delete.canal");
+Route::get('/ajout.rencontre', [BackendAdminController::class, 'ajout_canal_rencontre'])->name("ajout.rencontre");
+Route::post('/store.canal', [BackendAdminController::class, 'save_canal_rencontre'])->name("store.canal");
+Route::put('/update.canal/{canal}', [BackendAdminController::class, 'updatecanal'])->name("update.canal");
+Route::delete('/delete.canal/{id}', [BackendAdminController::class, 'delete_canal'])->name("delete.canal");
 
 //AJOUT DE DISPONIBILITE
-Route::get('/ajout.disponibilite', [AdminController::class, 'add_dispo'])->name("ajout.disponibilite");
-Route::post('/save.dispo', [AdminController::class, 'save_dispo'])->name("save.dispo");
-Route::put('/update.disponibilite/{dispo}', [AdminController::class, 'update_dispo'])->name("update.disponibilite");
-Route::delete('/delete.dispo/{id}', [AdminController::class, 'delete_dispo'])->name("delete.dispo");
+Route::get('/ajout.disponibilite', [BackendAdminController::class, 'add_dispo'])->name("ajout.disponibilite");
+Route::post('/save.dispo', [BackendAdminController::class, 'save_dispo'])->name("save.dispo");
+Route::put('/update.disponibilite/{dispo}', [BackendAdminController::class, 'update_dispo'])->name("update.disponibilite");
+Route::delete('/delete.dispo/{id}', [BackendAdminController::class, 'delete_dispo'])->name("delete.dispo");
 
 //NATURE PIECES
-Route::get('/nature.piece', [AdminController::class, 'nature_piece'])->name("nature.piece");
-Route::post('/store.pieces', [AdminController::class, 'save_nature_piece'])->name("store.pieces");
-Route::put('/update.piece/{naturepiece}', [AdminController::class, 'update_piece'])->name("update.piece");
-Route::delete('/delete.naturepiece/{id}', [AdminController::class, 'delete_nature_piece'])->name("delete.naturepiece");
+Route::get('/nature.piece', [BackendAdminController::class, 'nature_piece'])->name("nature.piece");
+Route::post('/store.pieces', [BackendAdminController::class, 'save_nature_piece'])->name("store.pieces");
+Route::put('/update.piece/{naturepiece}', [BackendAdminController::class, 'update_piece'])->name("update.piece");
+Route::delete('/delete.naturepiece/{id}', [BackendAdminController::class, 'delete_nature_piece'])->name("delete.naturepiece");
 
 //AJOUT COMMUNE
-Route::get('/communes', [AdminController::class, 'list_commune'])->name("ajout.commune");
-Route::post('/store.commune', [AdminController::class, 'save_commune'])->name("store.commune");
-Route::put('/update.commune/{comm}', [AdminController::class, 'update_commune'])->name("update.commune");
-Route::delete('/delete.commune/{id}', [AdminController::class, 'delete_commune'])->name("delete.commune");
+Route::get('/communes', [BackendAdminController::class, 'list_commune'])->name("ajout.commune");
+Route::post('/store.commune', [BackendAdminController::class, 'save_commune'])->name("store.commune");
+Route::put('/update.commune/{comm}', [BackendAdminController::class, 'update_commune'])->name("update.commune");
+Route::delete('/delete.commune/{id}', [BackendAdminController::class, 'delete_commune'])->name("delete.commune");
 
 //AJOUT DOMAINE
-Route::get('/ajout/quartier', [AdminController::class, 'add_quartier'])->name("ajout/quartier");
-Route::post('/store.quartier', [AdminController::class, 'save_quartier'])->name("store.quartier");
-Route::put('/update.quartier/{quartier}', [AdminController::class, 'update_tiek'])->name("update.quartier");
-Route::delete('/destroy.quartier/{id}', [AdminController::class, 'destroy'])->name("destroy.quartier");
+Route::get('/ajout/quartier', [BackendAdminController::class, 'add_quartier'])->name("ajout/quartier");
+Route::post('/store.quartier', [BackendAdminController::class, 'save_quartier'])->name("store.quartier");
+Route::put('/update.quartier/{quartier}', [BackendAdminController::class, 'update_tiek'])->name("update.quartier");
+Route::delete('/destroy.quartier/{id}', [BackendAdminController::class, 'destroy'])->name("destroy.quartier");
 
 //ABOUT
 Route::get('/ajout.about', [AboutController::class, 'presentation'])->name("ajout.about");

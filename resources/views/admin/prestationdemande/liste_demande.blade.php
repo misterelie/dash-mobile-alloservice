@@ -322,7 +322,7 @@
               @endif
               <!-- fin modifier -->
 
-              @if(!is_null($demandeprestations))
+              {{-- @if(!is_null($demandeprestations))
               @foreach($demandeprestations as $demandeprestation)
             <!-- Modal suppression prestation-->
                 <div class="modal fade zoomIn" id="deleteModal_{{ $demandeprestation->id }}" tabindex="-1" aria-hidden="true">
@@ -351,7 +351,7 @@
                 </div>
             <!--end modal -->
             @endforeach
-            @endif
+            @endif --}}
 
             @if(!is_null($demandeprestations))
             @foreach($demandeprestations as $demandeprestation)

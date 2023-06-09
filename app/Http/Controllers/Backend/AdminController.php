@@ -85,7 +85,7 @@ class AdminController extends Controller
     }
     //NOS PRESTATION
     public function liste_prestation(){
-        $prestations = Prestation::orderBy('id','asc')->get();
+        $prestations = Prestation::all();
         return view('admin.nos-prestations.index', compact('prestations'));
     }
     // TOUTES NOS DE DEMANDE DE PRESTATIONS

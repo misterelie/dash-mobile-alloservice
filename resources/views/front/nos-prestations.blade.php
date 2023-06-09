@@ -49,12 +49,14 @@ button:hover {
                 <div class="col-6 card-section">
                     <div class="block product no-border z-depth-2-top z-depth-2--hover mb-2">
                         <div class="block-image">
-                           @if(!is_null($prestation->image_prestation))
+                           
                             <a href="#">
-                                <img src="../uploadsprestation/{{ $prestation->image_prestation}}"
+                                @if(!is_null($prestation->image_prestation))
+                                <img src="/uploadsprestation/{{ $prestation->image_prestation}}"
                                     class="img-center">
-                                </a>
-                           @endif
+                                @endif
+                            </a>
+                         
                         </div>
                         <div class="block-body text-center">
                             <div class="row">

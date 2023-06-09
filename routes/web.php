@@ -34,7 +34,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 
-//SECTION ADMINISTRATION
+//SECTION FRONT
 
 Route::get('/', [InterfacesFrontController::class, 'index'])->name("front.index");
 Route::get('/ask.prestation', [InterfacesFrontController::class, 'demande_prestation'])->name("ask.prestation");
@@ -59,7 +59,7 @@ Route::post('/save_contact', [InterfacesFrontController::class, 'store_contact']
 Route::get('/liste/prestation', [BackendAdminController::class, 'liste_prestation'])->name("liste-prestation");
 Route::post('/save.prestation', [BackendAdminController::class, 'save_prestation'])->name("save.prestation");
 Route::put('/prestation.upate/{prestation}', [BackendAdminController::class, 'update'])->name("prestation.upate");
-Route::delete('/delete.prestation/{demandeprestation}', [BackendAdminController::class, 'delete'])->name("delete.prestation");
+Route::delete('/delete.prestation/{prestation}', [BackendAdminController::class, 'delete'])->name("delete.prestation");
 
 //LISTE DES DEMANDES DE PRESTATIONS
 Route::get('/liste/demande_prestation', [BackendAdminController::class, 'liste_demande_prestation'])->name("liste/demande_prestation");

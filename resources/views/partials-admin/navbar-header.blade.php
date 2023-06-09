@@ -22,7 +22,7 @@
                 </a>
             </div> --}}
 
-            <button type="button"
+            {{-- <button type="button"
                 class="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger shadow-none"
                 id="topnav-hamburger-icon">
                 <span class="hamburger-icon">
@@ -30,7 +30,7 @@
                     <span></span>
                     <span></span>
                 </span>
-            </button>
+            </button> --}}
 
             <!-- App Search-->
             {{-- <form class="app-search d-none d-md-block">
@@ -469,13 +469,13 @@
                 </div>
             </div> --}}
 
-            <div class="ms-1 header-item d-none d-sm-flex">
+            {{-- <div class="ms-1 header-item d-none d-sm-flex">
                 <button type="button"
                     class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle shadow-none"
                     data-toggle="fullscreen">
                     <i class='bx bx-fullscreen fs-22'></i>
                 </button>
-            </div>
+            </div> --}}
 
             <div class="ms-1 header-item d-none d-sm-flex">
                 <button type="button"
